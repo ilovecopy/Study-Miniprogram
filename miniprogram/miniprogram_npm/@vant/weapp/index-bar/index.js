@@ -90,9 +90,6 @@ var indexList = function () {
         setListRect: function () {
             var _this = this;
             return (0, utils_1.getRect)(this, '.van-index-bar').then(function (rect) {
-                if (!(0, utils_1.isDef)(rect)) {
-                    return;
-                }
                 Object.assign(_this, {
                     height: rect.height,
                     top: rect.top + _this.scrollTop,
@@ -164,10 +161,10 @@ var indexList = function () {
                 children.forEach(function (item, index) {
                     if (index === active) {
                         var wrapperStyle = '';
-                        var anchorStyle = "\n              color: ".concat(highlightColor, ";\n            ");
+                        var anchorStyle = "\n              color: " + highlightColor + ";\n            ";
                         if (isActiveAnchorSticky_1) {
-                            wrapperStyle = "\n                height: ".concat(children[index].height, "px;\n              ");
-                            anchorStyle = "\n                position: fixed;\n                top: ".concat(stickyOffsetTop, "px;\n                z-index: ").concat(zIndex, ";\n                color: ").concat(highlightColor, ";\n              ");
+                            wrapperStyle = "\n                height: " + children[index].height + "px;\n              ";
+                            anchorStyle = "\n                position: fixed;\n                top: " + stickyOffsetTop + "px;\n                z-index: " + zIndex + ";\n                color: " + highlightColor + ";\n              ";
                         }
                         _this.setDiffData({
                             target: item,
@@ -186,7 +183,7 @@ var indexList = function () {
                             : children[index + 1].top;
                         var parentOffsetHeight = targetOffsetTop - currentOffsetTop;
                         var translateY = parentOffsetHeight - currentAnchor.height;
-                        var anchorStyle = "\n              position: relative;\n              transform: translate3d(0, ".concat(translateY, "px, 0);\n              z-index: ").concat(zIndex, ";\n              color: ").concat(highlightColor, ";\n            ");
+                        var anchorStyle = "\n              position: relative;\n              transform: translate3d(0, " + translateY + "px, 0);\n              z-index: " + zIndex + ";\n              color: " + highlightColor + ";\n            ";
                         _this.setDiffData({
                             target: item,
                             data: {

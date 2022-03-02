@@ -242,7 +242,6 @@ var relation_1 = require("../common/relation");
         onTouchStart: function (event) {
             if (!this.data.swipeable)
                 return;
-            this.swiping = true;
             this.touchStart(event);
         },
         onTouchMove: function (event) {

@@ -74,7 +74,6 @@ function equal(value1, value2) {
             value: true,
         },
         theme: String,
-        alwaysEmbed: Boolean,
     },
     data: {
         currentValue: '',
@@ -142,7 +141,7 @@ function equal(value1, value2) {
             // limit max decimal length
             if ((0, validator_1.isDef)(this.data.decimalLength) && formatted.indexOf('.') !== -1) {
                 var pair = formatted.split('.');
-                formatted = "".concat(pair[0], ".").concat(pair[1].slice(0, this.data.decimalLength));
+                formatted = pair[0] + "." + pair[1].slice(0, this.data.decimalLength);
             }
             this.emitChange(formatted);
         },

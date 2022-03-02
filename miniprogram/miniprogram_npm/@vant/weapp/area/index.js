@@ -98,7 +98,7 @@ var EMPTY_CODE = '000000';
         },
         getConfig: function (type) {
             var areaList = this.data.areaList;
-            return (areaList && areaList["".concat(type, "_list")]) || {};
+            return (areaList && areaList[type + "_list"]) || {};
         },
         getList: function (type, code) {
             if (type !== 'province' && !code) {
@@ -125,7 +125,7 @@ var EMPTY_CODE = '000000';
                         ? EMPTY_CODE.slice(2, 4)
                         : EMPTY_CODE.slice(4, 6);
                 result.unshift({
-                    code: "".concat(code).concat(codeFill),
+                    code: "" + code + codeFill,
                     name: typeToColumnsPlaceholder[type],
                 });
             }

@@ -3,13 +3,13 @@
 
 <view
   class="{{ utils.bem('switch', { on: checked === activeValue, disabled }) }} custom-class"
-  style="{{ computed.rootStyle({ size, checked, activeColor, inactiveColor, activeValue }) }}"
+  style="{{ computed.rootStyle({ size, checked, activeColor, inactiveColor }) }}"
   bind:tap="onClick"
 >
   <view class="van-switch__node node-class">
     <van-loading
       wx:if="{{ loading }}"
-      color="{{ computed.loadingColor({ checked, activeColor, inactiveColor, activeValue }) }}"
+      color="{{ computed.loadingColor({ checked, activeColor, inactiveColor }) }}"
       custom-class="van-switch__loading"
     />
   </view>
