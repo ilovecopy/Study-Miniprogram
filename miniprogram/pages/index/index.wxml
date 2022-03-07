@@ -1,10 +1,6 @@
 <van-grid column-num="3" border="{{ false }}">
-  <van-grid-item 
-    icon="records" 
-    link-type="navigateTo"
-    url="/pages/exam/exam"
-    text="考试" 
-  />
+  <van-grid-item icon="records" link-type="navigateTo" url="/pages/exam/exam" text="考试" />
   <van-grid-item icon="todo-list-o" text="错题本" />
   <van-grid-item icon="star-o" text="收藏" />
 </van-grid>
+<text>{{name}}</text>

@@ -16,6 +16,21 @@
           "name": "exam",
           "pathName": "pages/exam/exam",
           "query": "",
+          "scene": null,
+          "launchMode": "default"
+        },
+        {
+          "name": "",
+          "pathName": "pages/register/register",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/login/login",
+          "query": "",
+          "launchMode": "default",
           "scene": null
         }
       ]

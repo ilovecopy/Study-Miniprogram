@@ -1,120 +1,131 @@
 <wxs module="tool">
-function getAnswerClass(question){
-  var isCorrect = question.answer.sort().join() === question.userAnswer.sort().join();
-  return isCorrect ? "text-success" : "text-error";
-}
-function getItemClass(question, item){
-  // 用户还未回答，不展示答案
-  if(!question.userAnswer){
-    return "options-item";
+  function getAnswerClass(question) {
+    var isCorrect = question.answer.sort().join() === question.userAnswer.sort().join();
+    return isCorrect ? "text-success" : "text-error";
   }
-
-  var userChecked = question.userAnswer.indexOf(item.value) !== -1;
-  var isCorrect = question.answer.indexOf(item.value) !== -1;
-
-  if(!question.showAnswer){ // 不展示答案
-    if(userChecked){ // 选中当前选项
-      return "options-item_checked"
-    }else{ // 用户未选中当前选项
-      return "options-item"
+  function getItemClass(question, item) {
+    // 用户还未回答，不展示答案
+    if (!question.userAnswer) {
+      return "options-item";
     }
-  }else{ // 需要展示答案
-    if(userChecked){ // 选中当前选项
-      if(isCorrect){ // 是正确答案
+
+    var userChecked = question.userAnswer.indexOf(item.value) !== -1;
+    var isCorrect = question.answer.indexOf(item.value) !== -1;
+
+    if (!question.showAnswer) { // 不展示答案
+      if (userChecked) { // 选中当前选项
         return "options-item_checked"
-      }else{// 是错误答案
-        return "options-item_error"
-      }
-    }else{
-      if(isCorrect){ // 是正确答案
-        return "options-item_missing"
-      }else{// 是错误答案
+      } else { // 用户未选中当前选项
         return "options-item"
       }
+    } else { // 需要展示答案
+      if (userChecked) { // 选中当前选项
+        if (isCorrect) { // 是正确答案
+          return "options-item_true"
+        } else {// 是错误答案
+          return "options-item_error"
+        }
+      } else {
+        if (isCorrect) { // 是正确答案
+          return "options-item_missing"
+        } else {// 是错误答案
+          return "options-item"
+        }
+      }
     }
-
   }
-}
-module.exports = {
-  getAnswerClass:getAnswerClass,
-  getItemClass:getItemClass,
-}
+  module.exports = {
+    getAnswerClass: getAnswerClass,
+    getItemClass: getItemClass,
+  }
 </wxs>
-
 <block wx:if="{{!finish}}">
-  <view class="card">
-    <view class="info">
-      <text class="hilight-text">{{currentIndex + 1}}</text>
-      /{{total}}
-      <text class="hilight-text">【{{question.typeText}}】</text>
-    </view>
-    <view class="question-con">
-      <view class="question-title">{{question.title}}</view>
-      <view class="question-options">
-        <view 
-          wx:for="{{question.options}}" 
-          wx:key="value" 
-          bindtap="onItemClick"
-          class="{{tool.getItemClass(question, item)}}" 
-          data-value="{{item.value}}"
-        >
-          {{item.value}}. {{item.text}}
+  <swiper style="height:{{swiperHeight}}px" current="{{current}}" bindchange="swiperChange">
+    <swiper-item wx:key="ssssss" wx:for="{{questionList}}">
+      <item-view item="{{item}}" index="{{index}}" swiperHeight="{{swiperHeight}}"></item-view>
+      <scroll-view scroll-y="true" style="height: 100%">
+        <view class="card">
+          <view class="info">
+            <text class="hilight-text">{{currentIndex + 1}}</text>
+            /{{total}}
+            <text class="hilight-text">【{{question.typeText}}】</text>
+          </view>
+          <view class="question-con">
+            <view class="question-title">{{question.title}}</view>
+            <view class="question-options">
+              <view wx:for="{{question.options}}" wx:key="value" bindtap="onItemClick" class="{{tool.getItemClass(question, item)}}" data-value="{{item.value}}">
+                {{item.value}}. {{item.text}}
+              </view>
+            </view>
+          </view>
+          <view wx:if="{{ question.userAnswer && !question.showAnswer}}">
+            <van-button round block color="#4A7BEE" bindtap="onShowAnswer">确定</van-button>
+          </view>
+          <view wx:if="{{question.showAnswer && question.userAnswer}}" class="desc-block">
+            <view class="answer-row">
+              <view>
+                <text class="answer">你的答案：</text>
+                <text class="{{tool.getAnswerClass(question)}}">{{question.userAnswer}}</text>
+              </view>
+              <view>
+                <text >正确答案：</text>
+                <text class="text-success">{{question.answer}}</text>
+              </view>
+            </view>
+            <!-- <van-tabs active="{{ active }}" bind:change="onChange">
+        <van-tab title="解析">{{question.desc}}</van-tab>
+        <van-tab title="评论">
+          <view wx:for="{{question.comment}}">
+            <text>{{item.name}}发表评论：</text>
+            <text>{{item.content}}</text>
+          </view>
+          <van-cell-group>
+            <van-field value="{{ value }}" bind:input="getComment" placeholder="请输入你的评论" border="{{ false }}" bind:change="onChange" />
+          </van-cell-group>
+          <van-button type="primary" bindtap="publish" size="small" color="#4fc08d">发表</van-button>
+        </van-tab>
+      </van-tabs> -->
+            <view class="desc-con">
+              <text>解析：</text>
+              {{question.desc}}
+            </view>
+          </view>
         </view>
-      </view>
-    </view>
-
-    <view wx:if="{{ question.userAnswer && !question.showAnswer}}">
-      <van-button round block color="#4fc08d" bindtap="onShowAnswer">对答案</van-button>
-    </view>
-
-    <view wx:if="{{question.showAnswer && question.userAnswer}}" class="desc-block">
-      <view class="answer-row">
-        <view>
-          你的答案：
-          <text class="{{tool.getAnswerClass(question)}}">{{question.userAnswer}}</text>
+        <view class="btn-row">
+          <van-button bindtap="goPrev" round type="primary" size="small" color="#4A7BEE">
+            <van-icon name="arrow-left" />
+            上一题
+          </van-button>
+          <van-button catchtap="onClickAnswerCard" round type="primary" size="small" color="#4A7BEE">
+            <van-icon name="notes-o" />
+            答题卡
+          </van-button>
+          <van-button wx:if="{{question.starred}}" bindtap="removeStar" round type="primary" size="small" color="#4A7BEE">
+            <van-icon name="star" />
+            已收藏
+          </van-button>
+          <van-button wx:else bindtap="addStar" round type="primary" size="small" color="#4A7BEE">
+            <van-icon name="star-o" />
+            收藏
+          </van-button>
+          <van-button wx:if="{{currentIndex + 1 == total}}" bindtap="goResult" round type="primary" size="small" color="#4A7BEE">
+            完成
+          </van-button>
+          <van-button wx:else bindtap="goNext" round type="primary" size="small" color="#4A7BEE">
+            下一题
+            <van-icon name="arrow" />
+          </van-button>
         </view>
-        <view>
-          正确答案：
-          <text class="text-success">{{question.answer}}</text>
-        </view>
-      </view>
-      <view class="desc-con">
-        <view>解析：</view>
-        {{question.desc}}
-      </view>
-    </view>
-  </view>
-  <view class="btn-row">
-    <van-button bindtap="goPrev" round type="primary" size="small" color="#4fc08d">
-      <van-icon name="arrow-left" />
-      上一题
-    </van-button>
-    <van-button wx:if="{{question.starred}}" bindtap="removeStar" round type="primary" size="small" color="#4fc08d">
-      <van-icon name="star" />
-      已收藏
-    </van-button>
-    <van-button wx:else bindtap="addStar" round type="primary" size="small" color="#4fc08d">
-      <van-icon name="star-o" />
-      收藏
-    </van-button>
-
-    <van-button wx:if="{{currentIndex + 1 == total}}" bindtap="goResult" round type="primary" size="small" color="#4fc08d">
-      完成
-    </van-button>
-    <van-button wx:else bindtap="goNext" round type="primary" size="small" color="#4fc08d">
-      下一题
-      <van-icon name="arrow" />
-    </van-button>
-  </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
 </block>
 <block wx:else>
   <view class="user-info">
     <open-data type="userAvatarUrl" class="avatar" />
     <open-data type="userNickName" class="nick-name" />
   </view>
-
   <van-divider />
-
   <view class="block">
     <view class="result-name">答题结果</view>
     <view class="result-desc">共 {{total}} 题，满分 100 分</view>
@@ -125,12 +136,16 @@ module.exports = {
   <view class="block">
     <view class="result-detail">
       <view>
-        <view class="result-green">{{correctCount }} 题</view>
+        <view class="result-green">{{correctCount}} 题</view>
         <view>答对</view>
       </view>
       <view>
-        <view class="result-red">{{wrongCount }} 题</view>
+        <view class="result-red">{{wrongCount}} 题</view>
         <view>答错</view>
+      </view>
+      <view>
+        <view class="result-blue">{{passCount}} 题</view>
+        <view>未答</view>
       </view>
       <view>
         <view class="result-green">{{score}} %</view>
@@ -138,15 +153,11 @@ module.exports = {
       </view>
     </view>
   </view>
-
-
   <van-divider />
-
   <view class="block" style="text-align: center;">
     <van-button round type="primary" custom-style="width: 50%;">查看错题</van-button>
   </view>
   <view class="block" style="text-align: center;">
     <van-button plain round hairline type="info" custom-style="width: 50%;">返回主页</van-button>
   </view>
-
 </block>

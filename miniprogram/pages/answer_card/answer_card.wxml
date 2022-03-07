@@ -1,0 +1,16 @@
+<wxs module="tool">
+  function getAnswerClass(question) {
+    if (!question.userAnswer || !question.showAnswer) {
+      return "record";
+    }
+    var isCorrect = question.answer.sort().join() === question.userAnswer.sort().join();
+    return isCorrect ? "record_true" : "record_false";
+  }
+  module.exports = {
+    getAnswerClass: getAnswerClass,
+  }
+</wxs>
+<view class="record-box">
+  <view class="{{tool.getAnswerClass(list[index])}}" wx:key="this" wx:for="{{list}}" catchtap="onClickCardItem" data-index="{{index}}">{{index + 1}}</view>
+</view>
+<button bindtap="goResult">交卷</button>
