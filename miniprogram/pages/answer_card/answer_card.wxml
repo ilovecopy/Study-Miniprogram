@@ -10,7 +10,51 @@
     getAnswerClass: getAnswerClass,
   }
 </wxs>
-<view class="record-box">
+
+<block wx:if="{{finish}}">
+  <view class="user-info">
+    <open-data type="userAvatarUrl" class="avatar" />
+    <open-data type="userNickName" class="nick-name" />
+  </view>
+  <van-divider />
+  <view class="block">
+    <view class="result-name">答题结果</view>
+    <view class="result-desc">共 {{total}} 题，满分 100 分</view>
+  </view>
+  <view class="block">
+    <view class="result-score">{{score}}分</view>
+  </view>
+  <view class="block">
+    <view class="result-detail">
+      <view>
+        <view class="result-green">{{correctCount}} 题</view>
+        <view>答对</view>
+      </view>
+      <view>
+        <view class="result-red">{{wrongCount}} 题</view>
+        <view>答错</view>
+      </view>
+      <view>
+        <view class="result-blue">{{passCount}} 题</view>
+        <view>未答</view>
+      </view>
+      <view>
+        <view class="result-green">{{score}} %</view>
+        <view>正确率</view>
+      </view>
+    </view>
+  </view>
+  <van-divider />
+  <view class="block" style="text-align: center;">
+    <van-button round type="primary" custom-style="width: 50%;">查看错题</van-button>
+  </view>
+  <view class="block" style="text-align: center;">
+    <van-button plain round hairline type="info" custom-style="width: 50%;">返回主页</van-button>
+  </view>
+</block>
+<block wx:else>
+  <view class="record-box">
   <view class="{{tool.getAnswerClass(list[index])}}" wx:key="this" wx:for="{{list}}" catchtap="onClickCardItem" data-index="{{index}}">{{index + 1}}</view>
 </view>
-<button bindtap="goResult">交卷</button>
+<van-button bindtap="goResult" round type="primary" size="large" color="#4A7BEE">交卷</van-button>
+</block>

@@ -41,6 +41,37 @@ Page({
       })
     }, 500)
   },
+  _recordScore(score) {
+    wx.cloud.callFunction({
+        name: "questionPool",
+        data: {
+          type: "recordScore",
+          score: score, //将分数发到云函数
+        }
+      })
+      .then(res => {
+        console.log(res);
+        const {
+          errCode,
+          errMsg
+        } = res.result;
+        if (errCode == 0) {
+          console.log(`已记录用户分数 ${score}`);
+        } else {
+          console.error(errMsg);
+        }
+      })
+      .catch(console.error);
+  },
+  _isCorrect(question) {
+    if (!question.userAnswer) {
+      return 0
+    } else if (question.answer.sort().join() === question.userAnswer.sort().join()) {
+      return 2
+    } else {
+      return 1
+    } //判断用户是否回答正确
+  },
   goResult() {
     const that = this;
     // if (!that.data.question.userAnswer) {
@@ -51,24 +82,33 @@ Page({
     //   });
     //   return;
     // }
-    const correctCount = that.data.questionList.reduce((val, cur) => {
-      if (that._isCorrect(cur)) {
+    const correctCount = that.data.list.reduce((val, cur) => {
+      if (that._isCorrect(cur)===2) {
         val += 1;
       }
       return val;
     }, 0);
-    const wrongCount = that.data.questionList.reduce((val, cur) => {
-      if (!that._isCorrect(cur)) {
+    const wrongCount = that.data.list.reduce((val, cur) => {
+      if (that._isCorrect(cur)===1) {
         val += 1;
       }
       return val;
     }, 0);
-    const score = Math.round((correctCount * 100) / that.data.total);
+    const passCount = that.data.list.reduce((val, cur) => {
+      if (that._isCorrect(cur) === 0) {
+        val += 1;
+      }
+      return val;
+    }, 0);
+    const total=correctCount+wrongCount+passCount;
+    const score = Math.round((correctCount * 100) / total);
     that._recordScore(score);
     that.setData({
       correctCount,
       wrongCount,
+      passCount,
       score,
+      total,
       finish: true,
     });
   },

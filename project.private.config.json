@@ -16,8 +16,8 @@
           "name": "exam",
           "pathName": "pages/exam/exam",
           "query": "",
-          "scene": null,
-          "launchMode": "default"
+          "launchMode": "default",
+          "scene": null
         },
         {
           "name": "",
@@ -32,6 +32,20 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/start-swiper-limited-load-paging/index",
+          "query": "",
+          "scene": null,
+          "launchMode": "default"
         }
       ]
     }

@@ -1,0 +1,4 @@
+<van-popup show="{{ show }}" bind:close="onClose" position="bottom" custom-style="height: 20%;">
+  <button bindtap="zuoti">做题模式</button>
+  <button bindtap="dati">答题模式</button>
+</van-popup>

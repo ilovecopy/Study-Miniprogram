@@ -17,7 +17,7 @@ Page({
     // 值为0禁止切换动画
     swiperDuration: "250",
     currentIndex: 0, //真实的index
-    show: true,
+    show: false,
     list: []
   },
   showPopup() {
@@ -118,7 +118,8 @@ Page({
     // 因为某一项不一定是在当前项的左侧还是右侧
     // 跳转前将动画去除，以免点击某选项回来后切换的体验很奇怪
     that.setData({
-      swiperDuration: "0"
+      swiperDuration: "0",
+      show:true
     })
     wx.navigateTo({
       url: '../answer_card/answer_card'

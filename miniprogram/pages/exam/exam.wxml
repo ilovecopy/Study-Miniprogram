@@ -68,7 +68,7 @@
                 <text class="{{tool.getAnswerClass(question)}}">{{question.userAnswer}}</text>
               </view>
               <view>
-                <text >正确答案：</text>
+                <text>正确答案：</text>
                 <text class="text-success">{{question.answer}}</text>
               </view>
             </view>
@@ -102,11 +102,11 @@
           </van-button>
           <van-button wx:if="{{question.starred}}" bindtap="removeStar" round type="primary" size="small" color="#4A7BEE">
             <van-icon name="star" />
-            已收藏
+            取消收藏
           </van-button>
           <van-button wx:else bindtap="addStar" round type="primary" size="small" color="#4A7BEE">
             <van-icon name="star-o" />
-            收藏
+            收藏本题
           </van-button>
           <van-button wx:if="{{currentIndex + 1 == total}}" bindtap="goResult" round type="primary" size="small" color="#4A7BEE">
             完成
@@ -118,7 +118,7 @@
         </view>
       </scroll-view>
     </swiper-item>
-  </swiper>
+  </swiper >
 </block>
 <block wx:else>
   <view class="user-info">
