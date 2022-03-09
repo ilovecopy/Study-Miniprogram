@@ -1,6 +1,7 @@
 Page({
   data: {
     show: true,
+    mode:"zuoti",
   },
   showPopup() {
     this.setData({
@@ -12,4 +13,14 @@ Page({
       show: false
     });
   },
+  zuoti(){
+    this.setData({
+      mode: "zuoti"
+    })
+  },
+  dati(){
+    this.setData({
+      mode: "dati"
+    })
+  }
 });

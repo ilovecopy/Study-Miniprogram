@@ -1,1 +1,23 @@
-/* pages/login/login.wxss */
+.button {
+  text-align: center;
+  border-radius: 187px;
+  background: rgba(245, 71, 100, 1);
+  box-shadow: 0px 8px 25px rgba(143, 1, 1, 0.2);
+  left: 61px;
+  top: 150px;
+  width: 253px;
+  height: 48px;
+  position: fixed;
+}
+
+/*登陆按钮*/
+.button_text {
+  left: 151.5px;
+  top: 155px;
+  width: 72px;
+  height: 38px;
+  color: rgba(255, 255, 255, 1);
+  font-size: 18px;
+  line-height: 38px;
+  position: fixed;
+}

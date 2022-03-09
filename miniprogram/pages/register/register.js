@@ -54,5 +54,10 @@ Page({
         console.log('注册失败', res)
       }
     })
+  },
+  gotoLogin(){
+    wx.navigateTo({
+      url: '../login/login',
+    })
   }
 })

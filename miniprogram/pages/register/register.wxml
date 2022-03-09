@@ -20,4 +20,9 @@
     bind:input="getPassword"
   />
 </van-cell-group>
-<van-button type="default" bindtap="register">注册</van-button>
+<button class="register_button" bindtap="register">
+<text class="register_button_text">注册</text>
+</button>
+<button class="login_button" bindtap="gotoLogin">
+  <text class="login_button_text">去登陆</text>
+</button>

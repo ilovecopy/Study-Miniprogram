@@ -67,7 +67,7 @@ Page({
         data: {
           type: "selectRecord",
           page: 1,
-          size: 330,
+          size: 10,
         },
       })
       .then((res) => {

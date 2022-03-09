@@ -55,8 +55,11 @@ Page({
             url: '../index/index?name='+user.account,
           })
         }else{
+          wx.showToast({
+            icon:'error',
+            title: '账号或密码错误',
+          })
           console.log('登陆失败')
-          Toast.fail('账号或密码不正确');
         }
       },
       fail(res) {
