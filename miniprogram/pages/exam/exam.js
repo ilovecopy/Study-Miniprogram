@@ -1,5 +1,5 @@
-// let content = ''
 const app = getApp();
+const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 Page({
   /**
    * 页面的初始数据
@@ -12,13 +12,25 @@ Page({
     score: 0,
     correctCount: 0,
     wrongCount: 0,
-    // comment: [],
+    comment: [],
+    content: '',
     current: 0, //swiper当前的index
     // 值为0禁止切换动画
     swiperDuration: "250",
     currentIndex: 0, //真实的index
     show: false,
-    list: []
+    list: [],
+    nickName: '微信用户',
+    avatarUrl: defaultAvatarUrl,
+    num: 0, //题库号,
+    mode: 0,
+    active: 0, //默认选中第一个标签
+    value: '',
+    beiti: 1 //背题
+  },
+  onChange(event) {
+    // event.detail 为当前输入的值
+    console.log(event.detail);
   },
   showPopup() {
     this.setData({
@@ -45,9 +57,7 @@ Page({
       question: tempQuestion, //滑动后更新题目
     });
   },
-  /**
-   * 点击答题卡的某一项
-   */
+  //点击答题卡的某一项
   onClickCardItem: function (e) {
     let pages = getCurrentPages(); //获取当前页面栈。数组中第一个元素为首页，最后一个元素为当前页面。
     let prevPage = pages[pages.length - 2];
@@ -59,8 +69,9 @@ Page({
       delta: 1, //回到上一页
     })
   },
-  getList() {
+  getList(mode) {
     const that = this;
+    console.log('getList', mode)
     wx.cloud
       .callFunction({
         name: "questionPool",
@@ -68,6 +79,7 @@ Page({
           type: "selectRecord",
           page: 1,
           size: 10,
+          mode: mode
         },
       })
       .then((res) => {
@@ -80,7 +92,9 @@ Page({
         if (errCode == 0) {
           const total = questionList.length;
           const question = questionList[that.data.currentIndex];
+          console.log('题目=', question)
           const comment = questionList[that.data.currentIndex].comment;
+          console.log('评论=', comment)
           that.checkStar(question._id);
           that.setData({
             questionList,
@@ -118,11 +132,11 @@ Page({
     // 因为某一项不一定是在当前项的左侧还是右侧
     // 跳转前将动画去除，以免点击某选项回来后切换的体验很奇怪
     that.setData({
-      swiperDuration: "0",
-      show:true
+      // swiperDuration: "0",
+      show: true
     })
     wx.navigateTo({
-      url: '../answer_card/answer_card'
+      url: '../answer_card/answer_card?beiti=' + this.beiti,
     })
   },
   onShowAnswer() {
@@ -131,7 +145,6 @@ Page({
     this.setData({
       question: tempQuestion,
     })
-
     this.addCollection();
   },
   onItemClick(event) {
@@ -146,18 +159,29 @@ Page({
     this.setData({
       question: tempQuestion,
     })
+    if(this.data.beiti==0){
+      if (tempQuestion.type=="radio") {
+        this.goNext()
+      }
+    }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getList();
     this.setData({
       //可使用窗口高度，单位px
       swiperHeight: wx.getSystemInfoSync().windowHeight,
-      screenHeight:wx.getSystemInfoSync().screenHeight,
+      screenHeight: wx.getSystemInfoSync().screenHeight,
       list: app.globalData.questionList,
+      beiti: app.globalData.beiti,
+      nickName: app.globalData.nickName,
+      avatarUrl: app.globalData.avatarUrl,
+      mode: options.mode
     })
+    console.log(options)
+    this.getList(this.data.mode);
+    console.log(this.data.beiti)
   },
   goPrev() {
     const that = this;
@@ -197,6 +221,9 @@ Page({
     });
   },
   goResult() {
+    wx.showLoading({
+      title: '提交答卷中'
+    });
     const that = this;
     // if (!that.data.question.userAnswer) {
     //   console.log(`用户还未回答，不跳转`);
@@ -233,6 +260,7 @@ Page({
       score, //发送分数
       finish: true, //发送完成信号
     });
+    wx.hideLoading();
   },
   _recordScore(score) {
     wx.cloud.callFunction({
@@ -402,36 +430,55 @@ Page({
       })
       .catch(console.error);
   },
-  // getComment(event) {
-  //   content = event.detail
-  //   console.log('获取输入的值', content)
-  // },
-  // publish() {
-  //   const that = this;
-  //   let comment = that.data.comment;
-  //   if (content.length < 4) {
-  //     wx.showToast({
-  //       icon: 'none',
-  //       title: '评论不能少于4个字',
-  //     })
-  //     return
-  //   }
-  //   let commemtList = {}
-  //   commemtList.name = '我'
-  //   commemtList.content = content
-  //   comment.push(commemtList)
-  //   console.log('添加后的评论', comment)
-  //   wx.cloud.callFunction({
-  //     name: "questionPool",
-  //     data: {
-  //       type: "addComment",
-  //       comment: comment,
-  //       // question: that.data.question,
-  //     }
-  //   }).then(
-  //     res => {
-  //       console.log(res)
-  //     }
-  //   )
-  // }
+  goFeedback() {
+    wx.navigateTo({
+      url: '../../pages/feedback/feedback',
+    })
+  },
+  getComment(event) {
+    this.setData({
+      content: event.detail
+    })
+    // console.log('获取输入的值', content)
+  },
+  publish() {
+    const that = this;
+    let comment = that.data.comment;
+    if (this.data.content.length < 4) {
+      wx.showToast({
+        icon: 'none',
+        title: '评论不能少于4个字',
+      })
+      return
+    }
+    let commemtList = {}
+    commemtList.name = app.globalData.nickName
+    console.log(this.data.nickName)
+    commemtList.content = this.data.content
+    let commentArr = this.data.comment
+    commentArr.push(commemtList)
+    console.log('添加后的评论', commentArr)
+    wx.showLoading({
+      title: '发表中。。。',
+    })
+    wx.cloud.callFunction({
+      name: "questionPool",
+      data: {
+        type: "addComment",
+        comment: commentArr,
+        questionId: that.data.question._id
+      }
+    }).then(
+      res => {
+        console.log(res)
+        this.setData({
+          comment: commentArr,
+          content: ''
+        })
+        wx.hideLoading()
+      }
+    ).catch(res => {
+      wx.hideLoading({})
+    })
+  }
 });

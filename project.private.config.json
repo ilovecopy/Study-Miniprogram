@@ -42,7 +42,14 @@
         },
         {
           "name": "",
-          "pathName": "pages/start-swiper-limited-load-paging/index",
+          "pathName": "pages/start-swiper-limited-load/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/test/test",
           "query": "",
           "scene": null,
           "launchMode": "default"

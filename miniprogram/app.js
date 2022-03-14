@@ -1,4 +1,5 @@
 // app.js
+const app=getApp();
 App({
   onLaunch: function () {
     if (!wx.cloud) {
@@ -13,6 +14,8 @@ App({
         traceUser: true,
       });
     }
-    this.globalData = {};
+    this.globalData = {
+      beiti:false,
+    };
   }
 });

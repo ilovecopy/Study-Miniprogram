@@ -1,23 +1,187 @@
-.button {
-  text-align: center;
-  border-radius: 187px;
-  background: rgba(245, 71, 100, 1);
-  box-shadow: 0px 8px 25px rgba(143, 1, 1, 0.2);
-  left: 61px;
-  top: 150px;
-  width: 253px;
-  height: 48px;
-  position: fixed;
+/*矩形 3*/
+
+.rectangle3{left: 0px;
+top: 0px;
+width: 375px;
+height: 358px;
+background: url(https://img.js.design/assets/smartFill/img267164da72e058.jpg)
+
 }
 
-/*登陆按钮*/
-.button_text {
-  left: 151.5px;
-  top: 155px;
-  width: 72px;
-  height: 38px;
-  color: rgba(255, 255, 255, 1);
-  font-size: 18px;
-  line-height: 38px;
-  position: fixed;
+/*密码矩形*/
+
+.password_rectangle{left: 30px;
+top: 546px;
+width: 315px;
+height: 54px;
+background: rgba(234, 234, 234, 0.59);
+border-radius: 187px;}
+
+
+/*文本 31*/
+
+.password_text{left: 87px;
+top: 559px;
+width: 67px;
+height: 38px;
+color: rgba(153, 153, 153, 1);
+font-size: 18px;
+line-height: 38px;
+position: fixed;
 }
+
+
+
+
+
+
+/*密码框组*/
+
+.password_group{left: 30px;
+top: 546px;
+width: 315px;
+height: 54px;
+position: fixed;
+}
+
+/*矩形 3*/
+
+.account_rectangle{left: 30px;
+top: 412px;
+width: 315px;
+height: 54px;
+background: rgba(234, 234, 234, 0.59);
+border-radius: 187px;
+position: fixed;}
+
+
+/*文本 31*/
+
+.account_text{left: 86px;
+top: 420px;
+width: 151px;
+height: 38px;
+color: rgba(153, 153, 153, 1);
+font-size: 18px;
+line-height: 38px;
+position: fixed;
+}
+
+/*账号内提示组*/
+
+.account_tips_group{left: 60px;
+top: 420px;
+width: 177px;
+height: 38px;
+position: fixed;
+}
+
+/*账号框组*/
+.account_group{
+left: 30px;
+top: 412px;
+width: 315px;
+height: 54px;
+position: fixed;}
+
+
+/*登陆按钮*/
+
+.login_button{left: 61px;
+top: 150px;
+width: 253px;
+height: 48px;
+background: rgba(245, 71, 100, 1);
+box-shadow: 0px 8px 25px rgba(143, 1, 1, 0.2);
+border-radius: 187px;
+position: fixed;
+}
+
+/*文本 30*/
+
+.login_text{left: 151.5px;
+top: 155px;
+width: 72px;
+height: 38px;
+color: rgba(255, 255, 255, 1);
+font-size: 18px;
+line-height: 38px;
+position: fixed;
+}
+
+/*登陆按钮组*/
+
+.login_button_group{left: 61px;
+top: 650px;
+width: 253px;
+height: 48px;
+}
+
+/*密码标题*/
+
+.password_head{left: 30px;
+top: 502px;
+width: 36px;
+height: 38px;
+color: rgba(71, 38, 52, 1);
+font-size: 18px;
+line-height: 38px;
+position: fixed;
+}
+
+/*账号标题*/
+
+.account_head{left: 30px;
+top: 368px;
+width: 36px;
+height: 38px;
+color: rgba(71, 38, 52, 1);
+font-size: 18px;
+line-height: 38px;
+position: fixed;}
+
+
+/*文本 28*/
+
+.text_top{left: 30px;
+top: 103px;
+width: 246px;
+height: 105.03px;
+color: rgba(255, 255, 255, 1);
+font-size: 41.46px;
+line-height: 52.52px;
+position: fixed;}
+
+
+/*登录标题*/
+
+.login_logo{left: 30px;
+top: 286px;
+width: 60px;
+height: 38px;
+color: rgba(71, 38, 52, 1);
+font-size: 30px;
+line-height: 38px;
+position: fixed;
+}
+
+
+/*矩形 1*/
+.rectangle1{
+left: 0px;
+top: 256px;
+width: 375px;
+height: 556px;
+background: rgba(247, 247, 247, 1);
+border-radius: NaNpx;
+position: fixed;}
+
+
+/*矩形 2*/
+
+.rectangle2{left: 0px;
+top: 0px;
+width: 375px;
+height: 339px;
+background: linear-gradient(90deg, rgba(0, 0, 0, 0.34) 0%, rgba(0, 0, 0, 0.54) 0%, rgba(0, 0, 0, 0) 100%);
+position: fixed;}

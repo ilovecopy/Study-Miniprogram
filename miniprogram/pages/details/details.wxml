@@ -1,0 +1,42 @@
+<!--pages/details/details.wxml-->
+
+<view class="padding mw-padding">
+  <view class="padding-top mw-top">
+    活动时间
+  </view>
+  <view class="padding-top-sm mw-top">
+    2021年11月07日10:00至11月15日22:00
+  </view>
+
+  <view class="padding-top mw-top">
+    竞答内容
+  </view>
+  <view class="padding-top-sm mw-top">
+    本次竞赛的题目来源于“消防安全知识”题库。
+  </view>
+  
+  <view class="padding-top mw-top">
+    竞答规则
+  </view>
+  
+  <view class="padding-top-sm mw-top">
+    （1）竞赛试题从题库中随机抽取，参加活动人员必须按照活动流程进行答题，否则答题成绩无效；
+  </view>
+  <view class="padding-top-sm mw-top">
+    （2）竞赛试题总共20道题，满分100分，答题时间10分钟，其中单选题5分/题，共20题；
+  </view>
+  <view class="padding-top-sm mw-top">
+    （3）每人每天答题机会不限次数，系统自动选取个人最高成绩进入排行榜进行排名。
+  </view>
+
+  <view class="padding-top mw-top">
+    奖励设置
+  </view>
+  <view class="padding-top-sm mw-top">
+    奖项设一等奖2名、二等奖5名、三等奖10名、优秀奖20名。
+  </view>
+
+  <view class="mw-weixin text-center text-gray">
+    <text class="icon-weixin"></text> tjcxiaoshuang
+  </view>
+</view>

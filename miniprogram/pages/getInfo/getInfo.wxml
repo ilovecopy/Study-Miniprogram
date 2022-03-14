@@ -1,0 +1,6 @@
+<button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+  <image class="avatar" src="{{avatarUrl}}"></image>
+</button>
+<input type="nickname" class="weui-input" bindinput="getnickName" placeholder="请输入昵称" />
+<view class="cu-avatar round lg" style="background-image:url({{avatarUrl}});"></view>
+<view class='text-grey text-sm'>{{nickName}}</view>

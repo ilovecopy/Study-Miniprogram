@@ -5,7 +5,7 @@ cloud.init({
 const db = cloud.database();
 // 记录分数
 exports.main = async (event, context) => {
-  console.log(event)
+  console.log('发生了',event)
   const {score, userInfo} = event;
   const addResult = await db.collection('history')
   .add({

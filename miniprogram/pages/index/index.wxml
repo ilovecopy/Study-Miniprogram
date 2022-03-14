@@ -1,9 +1,46 @@
 <van-grid column-num="3" border="{{ false }}">
-  <van-grid-item icon="records" link-type="navigateTo" url="/pages/exam/exam" text="考试" />
-  <van-grid-item icon="todo-list-o" text="错题本" />
-  <van-grid-item icon="star-o" text="收藏" />
+  <van-grid-item icon="records" link-type="navigateTo" url="/pages/chooseList/chooseList" clickable="true" text="法考题" />
+  <van-grid-item icon="setting-o" link-type="navigateTo" url="/pages/setting/setting" text="自定义刷题" />
+  <!-- <van-grid-item icon="todo-list-o" text="错题本" />
+  <van-grid-item icon="star-o" text="收藏" /> -->
 </van-grid>
-<van-grid column-num="3" border="{{ false }}">
-  <van-grid-item icon="setting-o"  link-type="navigateTo" url="/pages/setting/setting" text="设置" />
-</van-grid>
-<text>{{name}}</text>
+<!-- <van-grid column-num="3" border="{{ false }}">
+  <van-grid-item icon="setting-o" link-type="navigateTo" url="/pages/test/test" text="刷题" />
+  <van-grid-item icon="setting-o" link-type="navigateTo" url="/pages/history/history" text="历史记录" />
+  <van-grid-item icon="setting-o" link-type="navigateTo" url="/pages/rank/rank" text="排行榜" />
+</van-grid> -->
+<!-- <van-grid column-num="3" border="{{ false }}">
+  <van-grid-item icon="setting-o" link-type="navigateTo" url="/pages/getInfo/getInfo" text="获取头像昵称" />
+</van-grid> -->
+
+<!-- <view class="mw-btn">
+  <view class="mw-answer">
+
+    <view wx:if="{{!hasUserInfo}}" bindtap="login">
+      <button class='cu-btn bg-red round block lg margin-top'> 获取头像昵称 </button>
+    </view>
+
+    <view wx:else bindtap="goToTest">
+      <button class='cu-btn bg-red round block lg margin-top'>开始答题</button>
+    </view>
+
+    <view bindtap="goToHistory">
+      <button class='cu-btn bg-red round block lg margin-top'>答题记录</button>
+    </view>
+
+
+    <view bindtap="goToRank">
+      <button class='cu-btn bg-red round block lg margin-top'>排行榜</button>
+    </view>
+
+    <view>
+      <button class="cu-btn line-red round block lg margin-top" open-type="share"> 推荐给好友 </button>
+    </view>
+  </view>
+
+  <view class="text-center text-red padding-top-xs" bindtap="goToDetails">
+    活动规则
+  </view>
+</view>
+<view class="cu-avatar round lg" style="background-image:url({{avatarUrl}});"></view>
+<view class='text-grey text-sm'>{{nickName}}</view> -->

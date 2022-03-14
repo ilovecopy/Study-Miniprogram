@@ -6,11 +6,18 @@
     var isCorrect = question.answer.sort().join() === question.userAnswer.sort().join();
     return isCorrect ? "record_true" : "record_false";
   }
+  function judgeSelectedClass(question) {
+    if (!question.userAnswer) {
+      return "record";
+    }else{
+      return "record_selected";
+    }
+  }
   module.exports = {
     getAnswerClass: getAnswerClass,
+    judgeSelectedClass:judgeSelectedClass,
   }
 </wxs>
-
 <block wx:if="{{finish}}">
   <view class="user-info">
     <open-data type="userAvatarUrl" class="avatar" />
@@ -53,8 +60,11 @@
   </view>
 </block>
 <block wx:else>
-  <view class="record-box">
-  <view class="{{tool.getAnswerClass(list[index])}}" wx:key="this" wx:for="{{list}}" catchtap="onClickCardItem" data-index="{{index}}">{{index + 1}}</view>
-</view>
-<van-button bindtap="goResult" round type="primary" size="large" color="#4A7BEE">交卷</van-button>
+  <view class="record-box" wx:if="{{beiti==1}}">
+    <view class="{{tool.getAnswerClass(list[index])}}" wx:key="this" wx:for="{{list}}" catchtap="onClickCardItem" data-index="{{index}}">{{index + 1}}</view>
+  </view>
+  <view class="record-box" wx:else>
+    <view class="{{tool.judgeSelectedClass(list[index])}}" wx:key="this" wx:for="{{list}}" catchtap="onClickCardItem" data-index="{{index}}">{{index + 1}}</view>
+  </view>
+  <van-button bindtap="goResult" round type="primary" size="large" color="#4A7BEE">交卷</van-button>
 </block>

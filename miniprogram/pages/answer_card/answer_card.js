@@ -4,7 +4,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: []
+    list: [],
+    beiti:0
   },
   /**
    * 点击答题卡的某一项
@@ -26,6 +27,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       list: app.globalData.questionList,
+      beiti:app.globalData.beiti
     })
   },
   /**

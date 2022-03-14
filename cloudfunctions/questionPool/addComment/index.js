@@ -9,19 +9,18 @@ const db = cloud.database();
 // 添加收藏
 exports.main = async (event, context) => {
   console.log(event)
+  const {
+    questionId,
+    userInfo
+  } = event;
+  const recordId = md5(questionId + userInfo.openId);
+  console.log(recordId)
 
-  const {question, userInfo} = event;
-  question.openId = userInfo.openId;
-  question.questionId = question._id; 
-
-  const {_id, ...restObj} = question;
-  const recordId = md5(_id + userInfo.openId);
-
-  return await db.collection('question').doc(event._id)
-  .update({
-    data:{
-      comment:event.comment
-    }
-  })
-
+  const addResult = await db.collection('question').doc(questionId)
+    .update({
+      data: {
+        // openId:userInfo.openId,
+        comment: event.comment
+      }
+    });
 };

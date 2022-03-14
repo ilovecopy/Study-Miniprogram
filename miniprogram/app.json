@@ -5,8 +5,17 @@
     "pages/login/login",
     "pages/register/register",
     "pages/answer_card/answer_card",
-    "pages/setting/setting"
-
+    "pages/setting/setting",
+    "pages/feedback/feedback",
+    "pages/start-swiper-limited-load/index",
+    "pages/answer_card_test/index",
+    "pages/test/test",
+    "pages/getInfo/getInfo",
+    "pages/rank/rank",
+    "pages/history/history",
+    "pages/result/result",
+    "pages/details/details",
+    "pages/chooseList/chooseList"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -27,6 +36,10 @@
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",
     "van-action-sheet": "@vant/weapp/action-sheet/index",
-    "van-popup": "@vant/weapp/popup/index"
+    "van-popup": "@vant/weapp/popup/index",
+    "van-picker": "@vant/weapp/picker/index",
+    "van-switch": "@vant/weapp/switch/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index"
   }
 }
