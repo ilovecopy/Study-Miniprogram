@@ -68,7 +68,7 @@
                   <text class="{{tool.getAnswerClass(question)}}">{{question.userAnswer}}</text>
                 </view>
                 <view>
-                  <text>正确答案：</text>
+                  <text class="answer">正确答案：</text>
                   <text class="text-success">{{question.answer}}</text>
                 </view>
               </view>
@@ -133,15 +133,23 @@
           </van-button>
         </view>
         <view wx:for="{{comment}}">{{item.name}}:{{item.content}}</view>
-        <van-cell-group>
+        <!-- <van-cell-group>
           <van-field value="{{ content }}" placeholder="请输入评论" border="{{ false }}" bind:change="getComment" use-button-slot>
           </van-field>
           <van-button slot="button" bindtap="publish">发表评论</van-button>
         </van-cell-group>
         <view class="cu-avatar round lg" style="background-image:url({{avatarUrl}});"></view>
-        <view class='text-grey text-sm'>{{nickName}}
+        <view class='text-grey text-sm'>
+          {{nickName}}
           <van-button bindtap="publish">发表评论</van-button>
-        </view>
+        </view> -->
+        <van-cell-group>
+          <van-field value="{{ content }}" placeholder="请输入评论" border="{{ false }}" bind:change="onChange" use-button-slot maxlength="20" show-word-limit autosize>
+            <van-button slot="button" size="small" type="primary" bindtap="publish" color="#4C7AF4">
+              发送评论
+            </van-button>
+          </van-field>
+        </van-cell-group>
       </scroll-view>
     </swiper-item>
   </swiper>

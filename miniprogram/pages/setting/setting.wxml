@@ -1,9 +1,9 @@
 <!-- <van-popup show="{{ show }}" bind:close="onClose" position="bottom" custom-style="height: 20%;"> -->
 <van-cell-group>
-  <van-cell title="背题模式" label="开启后每答完一道题都会展示答案" border="{{ false }}">
+  <van-cell title="背题模式" label="每答完一道题都会展示答案" border="{{ false }}">
     <van-switch checked="{{ checked1 }}" bind:change="onChange1" />
   </van-cell>
-  <van-cell title="做题模式" label="开启后答完所有的题才会展示答案" border="{{ false }}">
+  <van-cell title="做题模式" label="答完所有的题才会展示答案" border="{{ false }}">
     <van-switch checked="{{ checked2 }}" bind:change="onChange2" />
   </van-cell>
 </van-cell-group>

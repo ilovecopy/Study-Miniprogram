@@ -16,6 +16,7 @@ App({
     }
     this.globalData = {
       beiti:false,
+      mode:1
     };
   }
 });

@@ -1,9 +1,6 @@
 const app = getApp();
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 Page({
-  /**
-   * 页面的初始数据
-   */
   data: {
     total: 0,
     question: null,
@@ -30,6 +27,9 @@ Page({
   },
   onChange(event) {
     // event.detail 为当前输入的值
+    this.setData({
+      content: event.detail
+    })
     console.log(event.detail);
   },
   showPopup() {
@@ -439,7 +439,7 @@ Page({
     this.setData({
       content: event.detail
     })
-    // console.log('获取输入的值', content)
+    console.log('获取输入的值', content)
   },
   publish() {
     const that = this;
@@ -452,7 +452,7 @@ Page({
       return
     }
     let commemtList = {}
-    commemtList.name = app.globalData.nickName
+    commemtList.name = "用户A"
     console.log(this.data.nickName)
     commemtList.content = this.data.content
     let commentArr = this.data.comment
