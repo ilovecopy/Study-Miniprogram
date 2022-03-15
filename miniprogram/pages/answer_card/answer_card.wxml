@@ -7,16 +7,20 @@
     return isCorrect ? "record_true" : "record_false";
   }
   function judgeSelectedClass(question) {
-    if (!question.userAnswer||question.userAnswer==[]) {
+    if (!question.userAnswer) {
+      console.log('没选答案', question.userAnswer)
       return "record";
-    }else{
-      console.log(question.userAnswer)
+    } else if (question.userAnswer == "") {
+      console.log('答案为空', question.userAnswer)
+      return "record";
+    } else {
+      console.log('有答案', question.userAnswer,'?')
       return "record_selected";
     }
   }
   module.exports = {
     getAnswerClass: getAnswerClass,
-    judgeSelectedClass:judgeSelectedClass,
+    judgeSelectedClass: judgeSelectedClass,
   }
 </wxs>
 <block wx:if="{{finish}}">
