@@ -1,15 +1,8 @@
-// pages/answer_card/index.js
 const app = getApp()
-
-
 Page({
-  /**
-   * 页面的初始数据
-   */
   data: {
     list: []
   },
-
   /**
    * 点击答题卡的某一项
    */

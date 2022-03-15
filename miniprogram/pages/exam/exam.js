@@ -168,7 +168,7 @@ Page({
       question: tempQuestion,
     })
     if(this.data.beiti==0){
-      if (tempQuestion.type=="radio") {
+      if (tempQuestion.type=="radio"&&tempQuestion.userAnswer==[]) {
         this.goNext()
       }
     }
@@ -358,11 +358,11 @@ Page({
             question: tempQustion,
             // [updateKey]:tempQustion,
           });
-          // wx.showToast({
-          //   title: "收藏成功",
-          //   icon: "success",
-          //   duration: 2000,
-          // });
+          wx.showToast({
+            title: "已收藏",
+            icon: "success",
+            duration: 2000,
+          });
         } //else {
         //   wx.showModal({
         //     title: "收藏失败",
@@ -423,11 +423,11 @@ Page({
             question: tempQustion,
             // [updateKey]:tempQustion,
           });
-          // wx.showToast({
-          //   title: "取消收藏成功",
-          //   icon: "success",
-          //   duration: 2000,
-          // });
+          wx.showToast({
+            title: "已取消收藏",
+            icon: "success",
+            duration: 2000,
+          });
         } //else {
         // wx.showModal({
         //   title: "取消收藏失败",

@@ -7,9 +7,10 @@
     return isCorrect ? "record_true" : "record_false";
   }
   function judgeSelectedClass(question) {
-    if (!question.userAnswer) {
+    if (!question.userAnswer||question.userAnswer==[]) {
       return "record";
     }else{
+      console.log(question.userAnswer)
       return "record_selected";
     }
   }

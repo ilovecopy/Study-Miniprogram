@@ -51,6 +51,19 @@
             <text class="hilight-text">{{currentIndex + 1}}</text>
             /{{total}}
             <text class="hilight-text">【{{question.typeText}}】</text>
+            <!--
+          <van-button wx:if="{{question.starred}}" bindtap="removeStar" round type="primary" size="small" color="#4A7BEE">
+            <van-icon name="star" />
+            取消收藏
+          </van-button>
+          <van-button wx:else bindtap="addStar" round type="primary" size="small" color="#4A7BEE">
+            <van-icon name="star-o" />
+            收藏本题
+          </van-button>
+            -->
+            <!-- <van-icon wx:if="{{!question.starred}}" name="star-o" bind:click="addStar" />
+            <van-icon wx:else name="star" bind:click="removeStar" color="#F6C745"/>
+            <van-icon  name="notes-o" bind:click="onClickAnswerCard"/> -->
           </view>
           <view class="question-con">
             <view class="question-title">{{question.title}}</view>
@@ -156,8 +169,8 @@
 </block>
 <block wx:else>
   <view class="user-info">
-    <view class="cu-avatar round lg" style="background-image:url({{avatarUrl}});"></view>
-    <view class='text-grey text-sm'>{{nickName}}</view>
+    <open-data type="userAvatarUrl" class="avatar" />
+    <open-data type="userNickName" class="nick-name" />
   </view>
   <van-divider />
   <view class="block">
