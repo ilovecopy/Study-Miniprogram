@@ -155,6 +155,14 @@ Page({
       console.log("已经看过答案，不能修改选项")
       return;
     }
+    if(this.data.beiti==1){
+      if (tempQuestion.type=="radio") {//单选点击直接出答案
+        tempQuestion.showAnswer=true;
+        this.setData({
+          question:tempQuestion
+        })
+      }
+    }
     tempQuestion.userAnswer = this._collectAnswer(selectedValue, tempQuestion);
     this.setData({
       question: tempQuestion,

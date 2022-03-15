@@ -61,7 +61,7 @@
             </view>
           </view>
           <view wx:if="{{beiti==1}}">
-            <view wx:if="{{question.type=='radio' &&question.userAnswer}}">
+            <view wx:if="{{question.type=='radio' &&question.userAnswer&&question.showAnswer}}">
               <view class="answer-row">
                 <view>
                   <text class="answer">你的答案：</text>
