@@ -1,0 +1,41 @@
+<form bindsubmit="addGoods">
+  <view class="cu-form-group margin-top">
+    <view class="title">商品名称</view>
+    <input placeholder="请输入商品名称" name="goodsName" value="{{goodsName}}"></input>
+  </view>
+
+  <view class="cu-form-group margin-top">
+    <view class="title">商品价格</view>
+    <input placeholder="请输入商品价格" type="number" name="goodsPrice" value="{{goodsPrice}}"></input>
+  </view>
+
+
+  <view class="cu-bar bg-white margin-top">
+    <view class="action">
+      商品图片
+    </view>
+    <view class="action">
+      {{goodsImgList.length}}/9
+    </view>
+  </view>
+
+  <view class="cu-form-group">
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{goodsImgList}}" wx:key="index" bindtap="ViewImage" data-url="{{goodsImgList[index]}}">
+        <image src='{{goodsImgList[index]}}' mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" bindtap="ChooseImage" wx:if="{{goodsImgList.length<9}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+
+  <view class="cu-form-group margin-top">
+    <textarea maxlength="-1" placeholder="介绍内容" name="goodsContent" value="{{goodsContent}}"></textarea>
+  </view>
+
+  <button class="cu-btn bg-grey lg button-hover add" form-type="submit">修改商品</button>
+</form>

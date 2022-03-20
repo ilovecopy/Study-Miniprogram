@@ -1,8 +1,61 @@
+import * as echarts from '../../ec-canvas/echarts';
 const app = getApp()
+function initChart(canvas, width, height, dpr) {
+  const chart = echarts.init(canvas, null, {
+    width: width,
+    height: height,
+    devicePixelRatio: dpr // new
+  });
+  canvas.setChart(chart);
+  var option = {
+    legend: {
+      orient: 'vertical',
+      x: 'left',
+      data: ['正确','错误','未答']
+    },
+    color: [
+      '#60C5A0',
+      '#E7645D',
+      '#4C7AF4'
+    ],
+    backgroundColor: "#ffffff",
+    series: [{
+      label: {
+        normal: {
+          fontSize: 14,
+          formatter: function (params) {
+            return params.name + " " + +params.value + " 题"
+         }
+        }
+      },
+      type: 'pie',
+      center: ['50%', '50%'],
+      radius: ['20%', '40%'],
+      data: [{
+        value: app.globalData.correctCount,
+        name: '正确'
+      }, {
+        value: app.globalData.wrongCount,
+        name: '错误'
+      }, {
+        value: app.globalData.passCount,
+        name: '未答'
+      }]
+    }]
+  };
+  chart.setOption(option);
+  return chart;
+}
 Page({
   data: {
+    ec: {
+      onInit: initChart
+    },
     list: [],
-    beiti:0
+    beiti: 0,
+    correctCount:0,
+    wrongCount:0,
+    passCount:0,
   },
   /**
    * 点击答题卡的某一项
@@ -14,8 +67,8 @@ Page({
     prevPage.setData({
       current: e.currentTarget.dataset.index
     })
-    wx.navigateBack({
-      delta: 1,
+    wx.navigateBack({//触发onUnLoad
+      delta: 1,//关闭当前页面，返回上一页面或多级页面。可通过 getCurrentPages 获取当前的页面栈，决定需要返回几层。
     })
   },
   /**
@@ -24,7 +77,10 @@ Page({
   onLoad: function (options) {
     this.setData({
       list: app.globalData.questionList,
-      beiti:app.globalData.beiti
+      beiti: app.globalData.beiti,
+      correctCount: app.globalData.correctCount,
+      wrongCount: app.globalData.wrongCount,
+      passCount: app.globalData.passCount,
     })
   },
   /**
@@ -62,14 +118,14 @@ Page({
       })
       .catch(console.error);
   },
-  _isCorrect(question) {
-    if (!question.userAnswer) {
+  _isCorrect(question) {//判断用户是否回答正确
+    if (!question.userAnswer || question.userAnswer =="") {
       return 0
     } else if (question.answer.sort().join() === question.userAnswer.sort().join()) {
       return 2
     } else {
       return 1
-    } //判断用户是否回答正确
+    } 
   },
   goResult() {
     const that = this;
@@ -82,13 +138,13 @@ Page({
     //   return;
     // }
     const correctCount = that.data.list.reduce((val, cur) => {
-      if (that._isCorrect(cur)===2) {
+      if (that._isCorrect(cur) === 2) {
         val += 1;
       }
       return val;
     }, 0);
     const wrongCount = that.data.list.reduce((val, cur) => {
-      if (that._isCorrect(cur)===1) {
+      if (that._isCorrect(cur) === 1) {
         val += 1;
       }
       return val;
@@ -99,7 +155,7 @@ Page({
       }
       return val;
     }, 0);
-    const total=correctCount+wrongCount+passCount;
+    const total = correctCount + wrongCount + passCount;
     const score = Math.round((correctCount * 100) / total);
     that._recordScore(score);
     that.setData({
@@ -110,5 +166,8 @@ Page({
       total,
       finish: true,
     });
+    app.globalData.correctCount=correctCount
+    app.globalData.passCount=passCount
+    app.globalData.wrongCount=wrongCount
   },
 })

@@ -1,0 +1,38 @@
+page {
+  background-color: rgba(166, 166, 166, 0.1);
+}
+
+.add {
+  margin: 0rpx auto;
+  border-radius: 16rpx;
+  background-color: var(--indexL);
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 500rpx;
+  bottom: 200rpx;
+
+}
+
+
+.addBtn {
+  position: fixed;
+  right: 40rpx;
+  bottom: 100rpx;
+  width: 80rpx;
+  height: 80rpx;
+  background: transparent;
+  border-radius: 50rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60rpx;
+  letter-spacing: 2rpx;
+  font-weight: bold;
+  color: #aaaaaa;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 1px 1px 3px #7c7272,
+    1px -1px 3px #dedede,
+    -1px 1px 3px #dedede,
+    -1px -1px 3px #dedede;
+}

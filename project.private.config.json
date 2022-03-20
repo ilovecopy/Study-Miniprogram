@@ -51,6 +51,13 @@
           "name": "",
           "pathName": "pages/test/test",
           "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/adminComm/commList/commList",
+          "query": "",
           "scene": null,
           "launchMode": "default"
         }

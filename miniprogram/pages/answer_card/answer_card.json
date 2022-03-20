@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "ec-canvas": "../../ec-canvas/ec-canvas"
+  },
   "navigationBarTitleText": "答题卡"
 }

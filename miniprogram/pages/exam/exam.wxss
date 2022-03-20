@@ -1,3 +1,4 @@
+
 page {
   background-color: #f7f8fa;
 }
@@ -254,8 +255,7 @@ page {
   font-size: 28rpx;
   box-sizing: border-box;
 }
-
-.record_selected {
+.record_selected{
   width: 70rpx;
   height: 70rpx;
   display: flex;
@@ -272,6 +272,7 @@ page {
   box-sizing: border-box;
 }
 
+
 .scroll-view {
   height: 100%;
 }
@@ -285,3 +286,22 @@ page {
   border-radius: 50%;
   overflow: hidden;
 }
+ec-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  position: absolute;
+  top: 500px; 
+  bottom: 0px;
+  left: 0;
+  right: 0;
+ 
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box; */
+
+} 

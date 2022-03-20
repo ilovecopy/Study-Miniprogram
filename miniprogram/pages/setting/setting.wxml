@@ -7,6 +7,15 @@
     <van-switch checked="{{ checked2 }}" bind:change="onChange2" />
   </van-cell>
 </van-cell-group>
+<divider></divider>
+<!-- <van-cell-group>
+  <van-cell title="随机刷题" label="从题库中随机抽取题目" border="{{ false }}">
+    <van-switch checked="{{ checked1 }}" bind:change="onChange3" />
+  </van-cell>
+  <van-cell title="顺序刷题" label="从题库的第一道题开始刷" border="{{ false }}">
+    <van-switch checked="{{ checked2 }}" bind:change="onChange4" />
+  </van-cell>
+</van-cell-group> -->
 <!-- <van-button  open-type="feedback">反馈与建议</van-button> -->
 <!-- </van-popup> -->
 <!-- <van-action-sheet

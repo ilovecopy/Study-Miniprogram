@@ -1,7 +1,57 @@
+import * as echarts from '../../ec-canvas/echarts';
+
 const app = getApp();
-const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
+function initChart(canvas, width, height, dpr) {
+  const chart = echarts.init(canvas, null, {
+    width: width,
+    height: height,
+    devicePixelRatio: dpr // new
+  });
+  canvas.setChart(chart);
+  var option = {
+    legend: {
+      orient: 'vertical',
+      x: 'left',
+      data: ['正确','错误','未答']
+    },
+    color: [
+      '#60C5A0',
+      '#E7645D',
+      '#4C7AF4'
+    ],
+    backgroundColor: "#ffffff",
+    series: [{
+      label: {
+        normal: {
+          fontSize: 14,
+          formatter: function (params) {
+            return params.name + " " + +params.value + " 题"
+         }
+        }
+      },
+      type: 'pie',
+      center: ['50%', '50%'],
+      radius: ['20%', '40%'],
+      data: [{
+        value: app.globalData.correctCount,
+        name: '正确'
+      }, {
+        value: app.globalData.wrongCount,
+        name: '错误'
+      }, {
+        value: app.globalData.passCount,
+        name: '未答'
+      }]
+    }]
+  };
+  chart.setOption(option);
+  return chart;
+}
 Page({
   data: {
+    ec: {
+      onInit: initChart
+    },
     total: 0,
     question: null,
     questionList: [],
@@ -15,15 +65,14 @@ Page({
     // 值为0禁止切换动画
     swiperDuration: "250",
     currentIndex: 0, //真实的index
-    show: false,
-    list: [],
+    // list: [],
     nickName: '微信用户',
-    avatarUrl: defaultAvatarUrl,
     num: 0, //题库号,
     mode: 0,
     active: 0, //默认选中第一个标签
     value: '',
-    beiti: 1 //背题
+    beiti: 1, //背题
+    show: false,
   },
   onChange(event) {
     // event.detail 为当前输入的值
@@ -38,9 +87,11 @@ Page({
     });
   },
   onClose() {
-    this.setData({
-      show: false
-    });
+    this.setData({ show: false });
+  },
+
+  onSelect(event) {
+    console.log(event.detail);
   },
   swiperChange(e) {
     console.log(e)
@@ -65,9 +116,13 @@ Page({
     prevPage.setData({
       current: e.currentTarget.dataset.index //重新设置current
     })
-    wx.navigateBack({
-      delta: 1, //回到上一页
-    })
+    // this.setData({
+    //   show:false,
+    //   current: e.currentTarget.dataset.index //重新设置current
+    // })
+    // wx.navigateBack({
+    //   delta: 1, //回到上一页
+    // })
   },
   getList(mode) {
     const that = this;
@@ -115,17 +170,17 @@ Page({
       .catch(console.error);
   },
   _collectAnswer(selectedValue, tempQuestion) {
-    if (tempQuestion.type == 'radio') {
-      return [selectedValue];
-    } else if (tempQuestion.type == 'checkbox') {
-      let currentAnswer = tempQuestion.userAnswer || [];
-      if (currentAnswer.includes(selectedValue)) {
-        currentAnswer.splice(currentAnswer.indexOf(selectedValue), 1)
-      } else {
-        currentAnswer.push(selectedValue)
-      }
-      return currentAnswer.sort();
+    // if (tempQuestion.type == 'radio') {
+    //   return [selectedValue];
+    // } else if (tempQuestion.type == 'checkbox') {
+    let currentAnswer = tempQuestion.userAnswer || [];
+    if (currentAnswer.includes(selectedValue)) { //includes() 方法用来判断一个数组是否包含一个指定的值，如果是返回 true，否则false。
+      currentAnswer.splice(currentAnswer.indexOf(selectedValue), 1) //indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置。
+    } else { //包含了就删除，没包含就加入
+      currentAnswer.push(selectedValue)
     }
+    return currentAnswer.sort();
+    // }
   },
   onClickAnswerCard: function (e) {
     let that = this;
@@ -155,11 +210,11 @@ Page({
       console.log("已经看过答案，不能修改选项")
       return;
     }
-    if(this.data.beiti==1){
-      if (tempQuestion.type=="radio") {//单选点击直接出答案
-        tempQuestion.showAnswer=true;
+    if (this.data.beiti == 1) {
+      if (tempQuestion.type == "radio") { //单选点击直接出答案
+        tempQuestion.showAnswer = true;
         this.setData({
-          question:tempQuestion
+          question: tempQuestion
         })
       }
     }
@@ -167,8 +222,9 @@ Page({
     this.setData({
       question: tempQuestion,
     })
-    if(this.data.beiti==0){
-      if (tempQuestion.type=="radio"&&tempQuestion.userAnswer==[]) {
+    if (this.data.beiti == 0) {
+      if (tempQuestion.type == "radio") {
+        console.log(tempQuestion.userAnswer)
         this.goNext()
       }
     }
@@ -181,14 +237,14 @@ Page({
       //可使用窗口高度，单位px
       swiperHeight: wx.getSystemInfoSync().windowHeight,
       screenHeight: wx.getSystemInfoSync().screenHeight,
-      list: app.globalData.questionList,
+      questionList: app.globalData.questionList,
       beiti: app.globalData.beiti,
       nickName: app.globalData.nickName,
       avatarUrl: app.globalData.avatarUrl,
-      mode: options.mode
+      mode: app.globalData.mode,
     })
     console.log(options)
-    this.getList(this.data.mode);
+    this.getList(options.mode);
     console.log(this.data.beiti)
   },
   goPrev() {
@@ -268,6 +324,9 @@ Page({
       score, //发送分数
       finish: true, //发送完成信号
     });
+    app.globalData.correctCount=correctCount;
+    app.globalData.wrongCount=wrongCount;
+    app.globalData.passCount=passCount;
     wx.hideLoading();
   },
   _recordScore(score) {
@@ -276,6 +335,8 @@ Page({
         data: {
           type: "recordScore",
           score: score, //将分数发到云函数
+          nickName: app.globalData.nickName,
+          avatarUrl:app.globalData.avatarUrl
         }
       })
       .then(res => {
@@ -292,14 +353,14 @@ Page({
       })
       .catch(console.error);
   },
-  _isCorrect(question) {
-    if (!question.userAnswer) {
+  _isCorrect(question) { //判断用户是否回答正确
+    if (!question.userAnswer || question.userAnswer == "") {
       return 0
     } else if (question.answer.sort().join() === question.userAnswer.sort().join()) {
       return 2
     } else {
       return 1
-    } //判断用户是否回答正确
+    }
   },
   addCollection() {
     const that = this;
@@ -400,7 +461,7 @@ Page({
       })
       .catch(console.error);
   },
-  removeStar() {
+  removeStar() {//移除收藏
     const that = this;
     wx.cloud
       .callFunction({
@@ -437,11 +498,6 @@ Page({
         //}
       })
       .catch(console.error);
-  },
-  goFeedback() {
-    wx.navigateTo({
-      url: '../../pages/feedback/feedback',
-    })
   },
   getComment(event) {
     this.setData({

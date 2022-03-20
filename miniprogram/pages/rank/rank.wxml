@@ -1,5 +1,3 @@
-
-
 <view class="mw-page">
   <view class="cu-list menu menu-avatar mw-menu">
     <view class="cu-item" wx:for="{{rankList}}" wx:key="index">
@@ -11,7 +9,7 @@
         <view class='text-grey text-sm'>{{item.nickName}}</view>
       </view>
       <view class='action'>
-        <view class='text-red text-xl'>{{item.totalScore}}分</view>
+        <view class='text-red text-xl'>{{item.score}}分</view>
       </view>
     </view>
   </view>

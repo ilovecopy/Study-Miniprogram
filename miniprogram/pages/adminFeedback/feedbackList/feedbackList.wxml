@@ -1,0 +1,59 @@
+<table scrollViewHeight="calc(100vh - 114rpx)" bindscrolltolower="getList" class="basic-table"
+  columns="{{tableColumns}}" dataList="{{dataList}}" getListLoading="{{isLoad}}"
+  showTipImage="{{dataList.length===0&&!isLoad}}" bindclicklistitem="handleClickItem" rowKey="_id" />
+
+
+<view class="cu-modal {{showInfo?'show':''}}">
+  <view class="cu-dialog">
+    <view class="item-content">
+      <view class="item-body">
+        <view class="cu-list menu sm-border">
+          <view class="cu-item">
+            <view class="content">
+              <text class="text-grey">名称</text>
+            </view>
+            <view class="action">
+              <text class="text-grey">{{dataInfo.nickName}}</text>
+            </view>
+          </view>
+          <view class="cu-item">
+            <view class="content">
+              <text class="text-grey">头像</text>
+            </view>
+            <view class="action">
+              <image src="{{dataInfo.avatarUrl}}" mode="aspectFill" data-imglist="{{[dataInfo.avatarUrl]}}"
+                data-url="{{dataInfo.avatarUrl}}" bindtap="ViewImage"></image>
+            </view>
+          </view>
+          <view class="cu-item">
+            <view class="content">
+              <text class="text-grey">状态</text>
+            </view>
+            <view class="action">
+              <text class="text-grey">{{dataInfo.isRead?'已读':'未读'}}</text>
+            </view>
+          </view>
+          <view class="cu-item">
+            <view class="content">
+              <text class="text-grey">内容</text>
+            </view>
+            <view class="action">
+              <text class="text-grey">{{dataInfo.content}}</text>
+            </view>
+          </view>
+          <view class="cu-item">
+            <view class="content">
+              <text class="text-grey">时间</text>
+            </view>
+            <view class="action">
+              <text class="text-grey">{{dataInfo.time}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub  solid-left" bindtap="hideModal">了解</view>
+    </view>
+  </view>
+</view>

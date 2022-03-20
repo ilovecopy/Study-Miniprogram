@@ -1,0 +1,64 @@
+.addBtn {
+  position: fixed;
+  right: 40rpx;
+  bottom: 100rpx;
+  width: 80rpx;
+  height: 80rpx;
+  background: transparent;
+  border-radius: 50rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60rpx;
+  letter-spacing: 2rpx;
+  font-weight: bold;
+  color: #aaaaaa;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 1px 1px 3px #7c7272,
+    1px -1px 3px #dedede,
+    -1px 1px 3px #dedede,
+    -1px -1px 3px #dedede;
+}
+
+
+
+
+.item-content {
+  min-height: 500rpx;
+  max-width: 90vh;
+  overflow: auto;
+}
+
+.cu-list.menu>.cu-item view.content {
+  display: flex;
+  align-items: center;
+  flex: 0 0 130rpx;
+  font-size: 30rpx;
+}
+
+.cu-list.menu>.cu-item view.content text {
+  text-align: justify;
+  text-align-last: justify;
+  width: 100%;
+}
+
+.cu-list.menu>.cu-item view.action {
+  flex: 1;
+  text-align: right;
+  font-size: 30rpx;
+  margin-left: 50rpx;
+  display: flex;
+  align-items: center;
+  flex-direction:row-reverse;
+  flex-wrap: wrap;
+}
+
+.cu-list.menu>.cu-item view.action image {
+  height: 80rpx;
+  width: 80rpx;
+  flex: 0 0 80rpx;
+}
+
+view.cu-bar{
+  border-top: 2rpx solid #eeeeee;
+}

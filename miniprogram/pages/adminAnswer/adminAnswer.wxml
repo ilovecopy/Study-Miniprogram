@@ -1,0 +1,17 @@
+<form bindsubmit="addType">
+  <view class="cu-form-group margin-top">
+    <view class="title">垃圾名称</view>
+    <input placeholder="请输入垃圾名称" model:value="{{name}}" name="name"></input>
+  </view>
+  
+  <view class="cu-form-group margin-top">
+    <view class="title">垃圾类型</view>
+    <picker bindchange="PickerChange" value="{{typeIndex}}" range="{{typePicker}}">
+      <view class="picker">
+        {{typePicker[typeIndex]}}
+      </view>
+    </picker>
+  </view>
+  <button class="cu-btn bg-grey lg button-hover add" form-type="submit">添加数据</button>
+  <view class="addBtn cuIcon-pick" bindtap="importHandle"></view>
+</form>

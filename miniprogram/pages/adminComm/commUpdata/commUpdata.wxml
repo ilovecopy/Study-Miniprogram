@@ -1,0 +1,44 @@
+<form bindsubmit="addComm">
+  <view class="cu-form-group margin-top">
+    <view class="title">标题</view>
+    <input placeholder="请输入标题" name="title" value="{{title}}"></input>
+  </view>
+
+  <view class="cu-form-group margin-top">
+    <view class="title">资讯类型</view>
+    <picker bindchange="PickerChange" value="{{typeIndex}}" range="{{typePicker}}">
+      <view class="picker">
+        {{typePicker[typeIndex]}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="cu-bar bg-white margin-top">
+    <view class="action">
+      图片上传
+    </view>
+    <view class="action">
+      {{imgList.length}}/9
+    </view>
+  </view>
+
+  <view class="cu-form-group">
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{imgList}}" wx:key="index" bindtap="ViewImage" data-url="{{imgList[index]}}">
+        <image src='{{imgList[index]}}' mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<9}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+
+  <view class="cu-form-group margin-top">
+    <textarea maxlength="-1" placeholder="资讯内容" name="content" value="{{content}}"></textarea>
+  </view>
+
+  <button class="cu-btn bg-grey lg button-hover add" form-type="submit">修改数据</button>
+</form>

@@ -27,6 +27,8 @@
   <view class="user-info">
     <open-data type="userAvatarUrl" class="avatar" />
     <open-data type="userNickName" class="nick-name" />
+    <view class='text-grey text-sm'>{{item.nickName}}</view>
+    <view class="cu-avatar round lg" style="background-image:url({{item.avatarUrl}});"></view>
   </view>
   <van-divider />
   <view class="block">
@@ -57,6 +59,9 @@
     </view>
   </view>
   <van-divider />
+  <view class="container">
+  <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}"></ec-canvas>
+</view>
   <view class="block" style="text-align: center;">
     <van-button round type="primary" custom-style="width: 50%;">查看错题</van-button>
   </view>
@@ -73,3 +78,4 @@
   </view>
   <van-button bindtap="goResult" round type="primary" size="large" color="#4A7BEE">交卷</van-button>
 </block>
+

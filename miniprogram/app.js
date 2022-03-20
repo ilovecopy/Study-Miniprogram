@@ -1,4 +1,5 @@
-// app.js
+import * as db from './util/db.js';
+import * as util from './util/util.js';
 const app=getApp();
 App({
   onLaunch: function () {
@@ -16,7 +17,10 @@ App({
     }
     this.globalData = {
       beiti:false,
-      mode:1
+      mode:1,
+      nickName:'未知用户',
+      avatarUrl:'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0',
     };
-  }
+  },
+  $util: util
 });

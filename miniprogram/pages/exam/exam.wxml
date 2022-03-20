@@ -1,5 +1,12 @@
 <wxs module="tool">
   function getAnswerClass(question) {
+    if (!question.userAnswer || !question.showAnswer) {
+      return "record";
+    }
+    var isCorrect = question.answer.sort().join() === question.userAnswer.sort().join();
+    return isCorrect ? "record_true" : "record_false";
+  }
+  function getAnswerTextClass(question) {//解析中你的答案后面的颜色
     var isCorrect = question.answer.sort().join() === question.userAnswer.sort().join();
     return isCorrect ? "text-success" : "text-error";
   }
@@ -8,8 +15,8 @@
     if (!question.userAnswer) {
       return "options-item";
     }
-    var userChecked = question.userAnswer.indexOf(item.value) !== -1;
-    var isCorrect = question.answer.indexOf(item.value) !== -1;
+    var userChecked = question.userAnswer.indexOf(item.value) !== -1;//用户选择的答案是否包含某选项
+    var isCorrect = question.answer.indexOf(item.value) !== -1;//串indexOf（子串），正确答案是否包含该选项
     if (!question.showAnswer) { // 不展示答案
       if (userChecked) { // 选中当前选项
         return "options-item_checked"
@@ -32,13 +39,23 @@
       }
     }
   }
+  function judgeSelectedClass(question) {
+    if (!question.userAnswer) {
+      console.log('没选答案', question.userAnswer)
+      return "record";
+    } else if (question.userAnswer == "") {
+      console.log('答案为空', question.userAnswer)
+      return "record";
+    } else {
+      console.log('有答案', question.userAnswer, '?')
+      return "record_selected";
+    }
+  }
   module.exports = {
     getItemClass: getItemClass,
+    getAnswerTextClass: getAnswerTextClass,
+    judgeSelectedClass: judgeSelectedClass,
     getAnswerClass: getAnswerClass
-  }
-  function selectedClass(question) {
-    var isCorrect = question.answer.sort().join() === question.userAnswer.sort().join();
-    return isCorrect ? "text-success" : "text-error";
   }
 </wxs>
 <block wx:if="{{!finish}}">
@@ -78,7 +95,7 @@
               <view class="answer-row">
                 <view>
                   <text class="answer">你的答案：</text>
-                  <text class="{{tool.getAnswerClass(question)}}">{{question.userAnswer}}</text>
+                  <text class="{{tool.getAnswerTextClass(question)}}">{{question.userAnswer}}</text>
                 </view>
                 <view>
                   <text class="answer">正确答案：</text>
@@ -98,7 +115,7 @@
                 <view class="answer-row">
                   <view>
                     <text class="answer">你的答案：</text>
-                    <text class="{{tool.getAnswerClass(question)}}">{{question.userAnswer}}</text>
+                    <text class="{{tool.getAnswerTextClass(question)}}">{{question.userAnswer}}</text>
                   </view>
                   <view>
                     <text>正确答案：</text>
@@ -137,6 +154,15 @@
             <van-icon name="notes-o" />
             答题卡
           </van-button>
+          <!-- <van-action-sheet show="{{ show }}" actions="{{ actions }}" bind:close="onClose" bind:select="onSelect">
+            <view class="record-box" wx:if="{{beiti==1}}">
+              <view class="{{tool.getAnswerClass(questionList[index])}}" wx:key="this" wx:for="{{questionList}}" catchtap="onClickCardItem" data-index="{{index}}">{{index + 1}}</view>
+            </view>
+            <view class="record-box" wx:else>
+              <view class="{{tool.judgeSelectedClass(questionList[index])}}" wx:key="this" wx:for="{{questionList}}" catchtap="onClickCardItem" data-index="{{index}}">{{index + 1}}</view>
+            </view>
+            <van-button bindtap="goResult" round type="primary" size="large" color="#4A7BEE">交卷</van-button>
+          </van-action-sheet> -->
           <van-button wx:if="{{currentIndex + 1 == total}}" bindtap="goResult" round type="primary" size="small" color="#4A7BEE">
             完成
           </van-button>
@@ -166,6 +192,15 @@
       </scroll-view>
     </swiper-item>
   </swiper>
+  <!-- <van-action-sheet show="{{ show }}" bind:close="onClose" title="答题卡">
+    <view class="record-box" wx:if="{{beiti==1}}">
+      <view class="record_true" wx:key="this" wx:for="{{questionList}}" catchtap="onClickCardItem" data-index="{{index}}">{{index + 1}}</view>
+    </view>
+    <view class="record-box" wx:else>
+      <view class="{{tool.judgeSelectedClass(questionList[index])}}" wx:key="this" wx:for="{{questionList}}" catchtap="onClickCardItem" data-index="{{index}}">{{index + 1}}</view>
+    </view>
+    <van-button bindtap="goResult" round type="primary" size="large" color="#4A7BEE">交卷</van-button>
+  </van-action-sheet> -->
 </block>
 <block wx:else>
   <view class="user-info">
@@ -201,6 +236,9 @@
     </view>
   </view>
   <van-divider />
+  <view class="container">
+    <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}"></ec-canvas>
+  </view>
   <view class="block" style="text-align: center;">
     <van-button round type="primary" custom-style="width: 50%;">查看错题</van-button>
   </view>

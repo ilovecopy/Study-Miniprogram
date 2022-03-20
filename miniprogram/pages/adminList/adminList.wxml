@@ -1,0 +1,12 @@
+<view class="cu-list grid col-3">
+  <block wx:for="{{iconList}}">
+    <view class="cu-item" bindtap="ItenClick" data-url="{{item.url}}">
+      <view class="cuIcon-{{item.icon}} text-{{item.color}}">
+        <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
+          <block>{{item.badge>99?"99+":item.badge}}</block>
+        </view>
+      </view>
+      <text>{{item.name}}</text>
+    </view>
+  </block>
+</view>

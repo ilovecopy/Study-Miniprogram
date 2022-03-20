@@ -1,0 +1,21 @@
+page {
+  background-color: rgba(166, 166, 166, 0.1);
+}
+
+form {
+  width: 100%;
+}
+
+.cu-form-group textarea {
+  height: 8.6em;
+}
+
+.add {
+  margin: auto;
+  border-radius: 16rpx;
+  background-color: var(--indexL);
+  display: flex;
+  top: 100rpx;
+  position: relative;
+  margin-bottom: 100rpx;
+}

@@ -1,0 +1,23 @@
+<view>
+  <view class="login-img">
+    <view class="owl-login" class="{{hideEyes?'password':''}}">
+      <view class="hand"></view>
+      <view class="hand hand-r"></view>
+      <view class="arms">
+        <view class="arm"></view>
+        <view class="arm arm-r"></view>
+      </view>
+    </view>
+  </view>
+  <view class="login-form">
+    <form bindsubmit="formSubmit">
+      <view class="form-input">
+        <input type="text" value="" name="admin" placeholder="用户名" />
+      </view>
+      <view class="form-input">
+        <input type="password" value="" name="password" placeholder="密码" bindfocus="passwordF_B" bindblur="passwordF_B" />
+      </view>
+      <button type="primary" form-type="submit">登录</button>
+    </form>
+  </view>
+</view>

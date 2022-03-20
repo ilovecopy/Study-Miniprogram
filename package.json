@@ -9,6 +9,7 @@
   "author": "yu",
   "license": "ISC",
   "dependencies": {
-    "@vant/weapp": "^1.10.2"
+    "@vant/weapp": "^1.10.2",
+    "echarts": "^5.3.1"
   }
 }

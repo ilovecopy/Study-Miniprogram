@@ -1,6 +1,12 @@
 <!-- <van-grid column-num="3" border="{{ false }}">
   <van-grid-item icon="records" link-type="navigateTo" url="/pages/exam/exam?num=1" text="法考题" />
 </van-grid> -->
-<van-button bindtap="random">随机刷题</van-button>
-<van-button bindtap="sequence">顺序刷题</van-button>
+
 <!-- <van-picker columns="{{ columns }}" bind:change="onChange" /> -->
+<view wx:if="{{!hasUserInfo}}" bindtap="login">
+  <van-button> 获取头像昵称 </van-button>
+</view>
+<view wx:else>
+  <van-button bindtap="random">随机刷题</van-button>
+  <van-button bindtap="sequence">顺序刷题</van-button>
+</view>
