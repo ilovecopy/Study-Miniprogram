@@ -1,12 +1,13 @@
 <van-grid column-num="3" border="{{ false }}" >
   <van-grid-item icon="records" link-type="navigateTo" url="/pages/chooseList/chooseList" clickable="true" text="法考题" />
-  <van-grid-item icon="setting-o" link-type="navigateTo" url="/pages/setting/setting" text="自定义刷题" />
+  <van-grid-item icon="todo-list-o" link-type="navigateTo" url="/pages/collection/collection" text="错题本" />
   <van-grid-item icon="chart-trending-o" link-type="navigateTo" url="/pages/rank/rank" text="排行榜" />
 
-  <!-- <van-grid-item icon="todo-list-o" text="错题本" />
-  <van-grid-item icon="star-o" text="收藏" /> -->
+  
+  <!-- <van-grid-item icon="star-o" text="收藏" /> -->
 </van-grid>
 <van-grid column-num="3" border="{{ false }}" >
+  <van-grid-item icon="setting-o" link-type="navigateTo" url="/pages/setting/setting" text="自定义刷题" />
   <!-- <van-grid-item icon="setting-o" link-type="navigateTo" url="/pages/test/test" text="刷题" />
   <van-grid-item icon="setting-o" link-type="navigateTo" url="/pages/history/history" text="历史记录" /> -->
   <!-- <van-grid-item icon="setting-o" link-type="navigateTo" url="/pages/admin/admin" text="后台" /> -->

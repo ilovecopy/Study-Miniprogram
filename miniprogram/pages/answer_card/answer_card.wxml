@@ -24,13 +24,13 @@
   }
 </wxs>
 <block wx:if="{{finish}}">
-  <view class="user-info">
+  <!-- <view class="user-info">
     <open-data type="userAvatarUrl" class="avatar" />
-    <open-data type="userNickName" class="nick-name" />
-    <view class='text-grey text-sm'>{{item.nickName}}</view>
-    <view class="cu-avatar round lg" style="background-image:url({{item.avatarUrl}});"></view>
-  </view>
-  <van-divider />
+    <open-data type="userNickName" class="nick-name" /> -->
+    <!-- <view class='text-grey text-sm'>{{item.nickName}}</view>
+    <view class="cu-avatar round lg" style="background-image:url({{item.avatarUrl}});"></view> -->
+  <!-- </view>
+  <van-divider /> -->
   <view class="block">
     <view class="result-name">答题结果</view>
     <view class="result-desc">共 {{total}} 题，满分 100 分</view>
@@ -63,10 +63,10 @@
   <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}"></ec-canvas>
 </view>
   <view class="block" style="text-align: center;">
-    <van-button round type="primary" custom-style="width: 50%;">查看错题</van-button>
+    <van-button bindtap="gotoCollection" round type="primary" custom-style="width: 50%;">查看错题</van-button>
   </view>
   <view class="block" style="text-align: center;">
-    <van-button plain round hairline type="info" custom-style="width: 50%;">返回主页</van-button>
+    <van-button bindtap="goHome" plain round hairline type="info" custom-style="width: 50%;">返回主页</van-button>
   </view>
 </block>
 <block wx:else>

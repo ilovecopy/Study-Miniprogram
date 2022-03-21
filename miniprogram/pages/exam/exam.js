@@ -49,6 +49,7 @@ function initChart(canvas, width, height, dpr) {
 }
 Page({
   data: {
+    activeNames: ['0'],//评论面板默认关闭
     ec: {
       onInit: initChart
     },
@@ -75,11 +76,9 @@ Page({
     show: false,
   },
   onChange(event) {
-    // event.detail 为当前输入的值
     this.setData({
-      content: event.detail
-    })
-    console.log(event.detail);
+      activeNames: event.detail,
+    });
   },
   showPopup() {
     this.setData({
@@ -97,6 +96,11 @@ Page({
     console.log(e)
     const that = this;
     const newIndex = e.detail.current
+    if(newIndex>this.data.currentIndex){
+      this.goNext()
+    }else{
+      this.goPrev()
+    }
     if (newIndex < 0) {
       console.log("已经是第一题")
       return;
@@ -210,15 +214,18 @@ Page({
       console.log("已经看过答案，不能修改选项")
       return;
     }
+    tempQuestion.userAnswer = this._collectAnswer(selectedValue, tempQuestion);
     if (this.data.beiti == 1) {
       if (tempQuestion.type == "radio") { //单选点击直接出答案
         tempQuestion.showAnswer = true;
         this.setData({
           question: tempQuestion
         })
+        if (tempQuestion.userAnswer!=tempQuestion.answer) {//单选选错直接加错题本
+          this.addCollection();
+        }
       }
     }
-    tempQuestion.userAnswer = this._collectAnswer(selectedValue, tempQuestion);
     this.setData({
       question: tempQuestion,
     })
@@ -355,9 +362,9 @@ Page({
   },
   _isCorrect(question) { //判断用户是否回答正确
     if (!question.userAnswer || question.userAnswer == "") {
-      return 0
+      return 0//未回答
     } else if (question.answer.sort().join() === question.userAnswer.sort().join()) {
-      return 2
+      return 2//回答正确
     } else {
       return 1
     }
@@ -365,11 +372,11 @@ Page({
   addCollection() {
     const that = this;
     let tempQuestion = that.data.question; //获取当前题目
-    if (!tempQuestion.userAnswer) {
+    if (that._isCorrect(tempQuestion)==0) {
       console.log(`用户还未回答，不加错题本逻辑 ${tempQuestion.title}`);
       return;
     }
-    if (that._isCorrect(tempQuestion)) {
+    if (that._isCorrect(tempQuestion)==2) {
       console.log(`用户答对了，不加错题本逻辑 ${tempQuestion.title}`);
       return;
     }
@@ -543,6 +550,16 @@ Page({
       }
     ).catch(res => {
       wx.hideLoading({})
+    })
+  },
+  gotoCollection(){
+    wx.reLaunch({
+      url: '../collection/collection',
+    })
+  },
+  goHome(){
+    wx.reLaunch({
+      url: '../index/index',
     })
   }
 });

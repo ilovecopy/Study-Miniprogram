@@ -32,6 +32,11 @@
         }
       } else {
         if (isCorrect) { // 是正确答案
+          if (question.type === 'checkbox') {
+            return "options-item_missing"
+          } else {
+            return "options-item_true"
+          }
           return "options-item_missing"
         } else {// 是错误答案
           return "options-item"
@@ -129,6 +134,18 @@
               </view>
             </view>
           </view>
+          <van-collapse value="{{ activeNames }}" bind:change="onChange">
+            <van-collapse-item title="评论" name="1">
+              <view wx:for="{{comment}}">{{item.name}}:{{item.content}}</view>
+              <van-cell-group>
+                <van-field value="{{ content }}" placeholder="请输入评论" border="{{ false }}" bind:change="onChange" use-button-slot maxlength="20" show-word-limit autosize>
+                  <van-button slot="button" size="small" type="primary" bindtap="publish" color="#4C7AF4">
+                    发送评论
+                  </van-button>
+                </van-field>
+              </van-cell-group>
+            </van-collapse-item>
+          </van-collapse>
           <!-- <view wx:if="{{beiti==0}}">
             <view wx:if="{{question.type=='checkbox'}}">
               <view wx:if="{{question.userAnswer}}">
@@ -137,24 +154,28 @@
             </view>
           </view> -->
         </view>
-        <view class="btn-row">
-          <van-button bindtap="goPrev" round type="primary" size="small" color="#4A7BEE">
-            <van-icon name="arrow-left" />
-            上一题
-          </van-button>
-          <van-button wx:if="{{question.starred}}" bindtap="removeStar" round type="primary" size="small" color="#4A7BEE">
-            <van-icon name="star" />
-            取消收藏
-          </van-button>
-          <van-button wx:else bindtap="addStar" round type="primary" size="small" color="#4A7BEE">
-            <van-icon name="star-o" />
-            收藏本题
-          </van-button>
-          <van-button catchtap="onClickAnswerCard" round type="primary" size="small" color="#4A7BEE">
-            <van-icon name="notes-o" />
-            答题卡
-          </van-button>
-          <!-- <van-action-sheet show="{{ show }}" actions="{{ actions }}" bind:close="onClose" bind:select="onSelect">
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+  <view class="footer">
+    <view class="btn-row">
+      <van-button bindtap="goPrev" round type="primary" size="small" color="#4A7BEE">
+        <van-icon name="arrow-left" />
+        上一题
+      </van-button>
+      <van-button wx:if="{{question.starred}}" bindtap="removeStar" round type="primary" size="small" color="#4A7BEE">
+        <van-icon name="star" />
+        取消收藏
+      </van-button>
+      <van-button wx:else bindtap="addStar" round type="primary" size="small" color="#4A7BEE">
+        <van-icon name="star-o" />
+        收藏本题
+      </van-button>
+      <van-button catchtap="onClickAnswerCard" round type="primary" size="small" color="#4A7BEE">
+        <van-icon name="notes-o" />
+        答题卡
+      </van-button>
+      <!-- <van-action-sheet show="{{ show }}" actions="{{ actions }}" bind:close="onClose" bind:select="onSelect">
             <view class="record-box" wx:if="{{beiti==1}}">
               <view class="{{tool.getAnswerClass(questionList[index])}}" wx:key="this" wx:for="{{questionList}}" catchtap="onClickCardItem" data-index="{{index}}">{{index + 1}}</view>
             </view>
@@ -163,16 +184,15 @@
             </view>
             <van-button bindtap="goResult" round type="primary" size="large" color="#4A7BEE">交卷</van-button>
           </van-action-sheet> -->
-          <van-button wx:if="{{currentIndex + 1 == total}}" bindtap="goResult" round type="primary" size="small" color="#4A7BEE">
-            完成
-          </van-button>
-          <van-button wx:else bindtap="goNext" round type="primary" size="small" color="#4A7BEE">
-            下一题
-            <van-icon name="arrow" />
-          </van-button>
-        </view>
-        <view wx:for="{{comment}}">{{item.name}}:{{item.content}}</view>
-        <!-- <van-cell-group>
+      <van-button wx:if="{{currentIndex + 1 == total}}" bindtap="goResult" round type="primary" size="small" color="#4A7BEE">
+        完成
+      </van-button>
+      <van-button wx:else bindtap="goNext" round type="primary" size="small" color="#4A7BEE">
+        下一题
+        <van-icon name="arrow" />
+      </van-button>
+    </view>
+    <!-- <van-cell-group>
           <van-field value="{{ content }}" placeholder="请输入评论" border="{{ false }}" bind:change="getComment" use-button-slot>
           </van-field>
           <van-button slot="button" bindtap="publish">发表评论</van-button>
@@ -182,16 +202,7 @@
           {{nickName}}
           <van-button bindtap="publish">发表评论</van-button>
         </view> -->
-        <van-cell-group>
-          <van-field value="{{ content }}" placeholder="请输入评论" border="{{ false }}" bind:change="onChange" use-button-slot maxlength="20" show-word-limit autosize>
-            <van-button slot="button" size="small" type="primary" bindtap="publish" color="#4C7AF4">
-              发送评论
-            </van-button>
-          </van-field>
-        </van-cell-group>
-      </scroll-view>
-    </swiper-item>
-  </swiper>
+  </view>
   <!-- <van-action-sheet show="{{ show }}" bind:close="onClose" title="答题卡">
     <view class="record-box" wx:if="{{beiti==1}}">
       <view class="record_true" wx:key="this" wx:for="{{questionList}}" catchtap="onClickCardItem" data-index="{{index}}">{{index + 1}}</view>
@@ -203,11 +214,11 @@
   </van-action-sheet> -->
 </block>
 <block wx:else>
-  <view class="user-info">
+  <!-- <view class="user-info">
     <open-data type="userAvatarUrl" class="avatar" />
     <open-data type="userNickName" class="nick-name" />
   </view>
-  <van-divider />
+  <van-divider /> -->
   <view class="block">
     <view class="result-name">答题结果</view>
     <view class="result-desc">共 {{total}} 题，满分 100 分</view>
@@ -240,9 +251,9 @@
     <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}"></ec-canvas>
   </view>
   <view class="block" style="text-align: center;">
-    <van-button round type="primary" custom-style="width: 50%;">查看错题</van-button>
+    <van-button bindtap="gotoCollection" round type="primary" custom-style="width: 50%;">查看错题</van-button>
   </view>
   <view class="block" style="text-align: center;">
-    <van-button plain round hairline type="info" custom-style="width: 50%;">返回主页</van-button>
+    <van-button bindtap="goHome" plain round hairline type="info" custom-style="width: 50%;">返回主页</van-button>
   </view>
 </block>

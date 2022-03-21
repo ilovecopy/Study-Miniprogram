@@ -58,8 +58,19 @@
           "name": "",
           "pathName": "pages/adminComm/commList/commList",
           "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "错题本",
+          "pathName": "pages/collection/collection",
+          "query": "",
           "scene": null,
-          "launchMode": "default"
+          "launchMode": "default",
+          "partialCompile": {
+            "enabled": true,
+            "pages": []
+          }
         }
       ]
     }

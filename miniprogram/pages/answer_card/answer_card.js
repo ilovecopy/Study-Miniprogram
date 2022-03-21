@@ -170,4 +170,14 @@ Page({
     app.globalData.passCount=passCount
     app.globalData.wrongCount=wrongCount
   },
+  gotoCollection(){
+    wx.reLaunch({
+      url: '../collection/collection',
+    })
+  },
+  goHome(){
+    wx.reLaunch({
+      url: '../index/index',
+    })
+  }
 })
