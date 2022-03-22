@@ -342,8 +342,8 @@ Page({
         data: {
           type: "recordScore",
           score: score, //将分数发到云函数
-          nickName: app.globalData.nickName,
-          avatarUrl:app.globalData.avatarUrl
+          nickName: this.data.nickName,
+          avatarUrl: this.data.avatarUrl,
         }
       })
       .then(res => {
@@ -354,6 +354,9 @@ Page({
         } = res.result;
         if (errCode == 0) {
           console.log(`已记录用户分数 ${score}`);
+          // console.log('已记录用户分数 ',score);
+          console.log('已记录用户名字 ',this.data.nickName);
+          // console.log(`已记录用户名字 ${app.globalData.hasUserInfo}`);
         } else {
           console.error(errMsg);
         }

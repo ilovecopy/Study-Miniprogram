@@ -6,14 +6,14 @@ const db = cloud.database();
 // 记录分数
 exports.main = async (event, context) => {
   console.log('发生了',event)
-  const {avatarUrl,nickName,score, userInfo} = event;
+  const {score, userInfo} = event;
   const addResult = await db.collection('history')
   .add({
     data:{
       openId:userInfo.openId,
       score:score,
-      nickName:nickName,
-      avatarUrl:avatarUrl,
+      nickName:event.nickName,
+      avatarUrl:event.avatarUrl,
       createTime: db.serverDate(),
     }
   });

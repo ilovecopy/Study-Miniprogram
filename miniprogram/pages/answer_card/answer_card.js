@@ -81,6 +81,8 @@ Page({
       correctCount: app.globalData.correctCount,
       wrongCount: app.globalData.wrongCount,
       passCount: app.globalData.passCount,
+      nickName: app.globalData.nickName,
+      avatarUrl: app.globalData.avatarUrl,
     })
   },
   /**
@@ -102,6 +104,8 @@ Page({
         data: {
           type: "recordScore",
           score: score, //将分数发到云函数
+          nickName: this.data.nickName,
+          avatarUrl: this.data.avatarUrl,
         }
       })
       .then(res => {
