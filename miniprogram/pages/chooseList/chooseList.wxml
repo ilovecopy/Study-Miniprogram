@@ -7,6 +7,6 @@
   <van-button> 获取头像昵称 </van-button>
 </view>
 <view wx:else>
-  <van-button bindtap="random">随机刷题</van-button>
-  <van-button bindtap="sequence">顺序刷题</van-button>
+  <van-button bindtap="theory">理论法</van-button>
+  <van-button bindtap="economy">经济法</van-button>
 </view>

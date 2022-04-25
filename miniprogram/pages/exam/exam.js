@@ -75,6 +75,7 @@ Page({
     value: '',
     beiti: 1, //背题
     show: false,
+    subject:1,
   },
   onChange(event) {
     this.setData({
@@ -142,6 +143,7 @@ Page({
           page: 1,
           size: 10,
           mode: app.globalData.mode,
+          index:app.globalData.subject,
           // index:index
         },
       })
@@ -253,7 +255,9 @@ Page({
       nickName: app.globalData.nickName,
       avatarUrl: app.globalData.avatarUrl,
       mode: app.globalData.mode,
+      subject: app.globalData.subject,
     })
+    console.log(app.globalData.subject)
     console.log(options)
     this.getList(options.mode);
     console.log(this.data.beiti)

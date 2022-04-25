@@ -12,19 +12,19 @@ Page({
     } = event.detail;
     Toast(`当前值：${value}, 当前索引：${index}`);
   },
-  sequence() {
+  theory() {
     // console.log('》？？？',app.globalData.nickName)
     wx.navigateTo({
-      url: '../exam/exam?mode=' + 1,
+      url: '../exam/exam?subject=' + '理论法',
     })
-    app.globalData.mode=1
+    app.globalData.subject='理论法'
   },
-  random() {
+  economy() {
     // console.log(app.globalData.nickName)
     wx.navigateTo({
-      url: '../exam/exam?mode=' + 2,
+      url: '../exam/exam?subject=' + '经济法',
     })
-    app.globalData.mode=2
+    app.globalData.subject='经济法'
   },
   //微信授权登录
   login() {

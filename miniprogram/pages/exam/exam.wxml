@@ -73,6 +73,7 @@
             <text class="hilight-text">{{currentIndex + 1}}</text>
             /{{total}}
             <text class="hilight-text">【{{question.typeText}}】</text>
+            <text class="hilight-text">【{{question.index}}】</text>
             <!--
           <van-button wx:if="{{question.starred}}" bindtap="removeStar" round type="primary" size="small" color="#4A7BEE">
             <van-icon name="star" />
