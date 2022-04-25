@@ -19,6 +19,13 @@ Page({
     })
     app.globalData.subject='理论法'
   },
+  civil() {
+    // console.log('》？？？',app.globalData.nickName)
+    wx.navigateTo({
+      url: '../exam/exam?subject=' + '民法',
+    })
+    app.globalData.subject='民法'
+  },
   economy() {
     // console.log(app.globalData.nickName)
     wx.navigateTo({

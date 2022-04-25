@@ -63,9 +63,9 @@ async function getRandomList(event) {
 exports.main = async (event, context) => {
   console.log(event)
   // 返回数据库查询结果
-  if (event.mode==1) {
+  if (event.mode==false) {
     return getPageData(event)
-  } else if (event.mode==2) {
+  } else if (event.mode==true) {
     return getRandomList(event);
   }
 };

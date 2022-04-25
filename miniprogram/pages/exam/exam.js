@@ -70,7 +70,7 @@ Page({
     // list: [],
     nickName: '微信用户',
     num: 0, //题库号,
-    mode: 0,
+    mode: true,//随机答题
     active: 0, //默认选中第一个标签
     value: '',
     beiti: 1, //背题
@@ -259,7 +259,7 @@ Page({
     })
     console.log(app.globalData.subject)
     console.log(options)
-    this.getList(options.mode);
+    this.getList();
     console.log(this.data.beiti)
   },
   goPrev() {
