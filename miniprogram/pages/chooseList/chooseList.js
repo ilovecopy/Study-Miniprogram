@@ -13,16 +13,18 @@ Page({
     Toast(`当前值：${value}, 当前索引：${index}`);
   },
   sequence() {
-    console.log('》？？？',app.globalData.nickName)
+    // console.log('》？？？',app.globalData.nickName)
     wx.navigateTo({
       url: '../exam/exam?mode=' + 1,
     })
+    app.globalData.mode=1
   },
   random() {
-    console.log(app.globalData.nickName)
+    // console.log(app.globalData.nickName)
     wx.navigateTo({
       url: '../exam/exam?mode=' + 2,
     })
+    app.globalData.mode=2
   },
   //微信授权登录
   login() {

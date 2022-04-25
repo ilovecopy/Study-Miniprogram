@@ -1,0 +1,23 @@
+<view class="page-body">
+  <form bindsubmit="formSubmit">
+    <view class="page-section">
+      <!-- <view class="weui-cells__title">题目</view> -->
+      <view class="weui-cells weui-cells_after-title">
+        <!-- <view class="weui-cell weui-cell_input">
+          <input value="{{formData.title}}" name="title" class="weui-input" auto-focus placeholder="请输入题目" />
+        </view> -->
+        <van-cell-group>
+          <van-field value="{{formData.title}}" label="题目" type="textarea" placeholder="请输入题目" autosize border="{{ false }}"
+          bind:change="changeTitle"
+           />
+        </van-cell-group>
+        <van-cell-group>
+          <van-field value="{{formData.desc}}" label="解析" type="textarea" placeholder="请输入解析" autosize border="{{ false }}" 
+          bind:change="changeDesc"
+          />
+        </van-cell-group>
+      </view>
+      <van-button plain hairline type="primary" formType="submit">提交</van-button>
+    </view>
+  </form>
+</view>

@@ -41,36 +41,22 @@
           "scene": null
         },
         {
-          "name": "",
-          "pathName": "pages/start-swiper-limited-load/index",
+          "name": "收藏本",
+          "pathName": "pages/star/star",
           "query": "",
           "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "",
-          "pathName": "pages/test/test",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "",
-          "pathName": "pages/adminComm/commList/commList",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "错题本",
-          "pathName": "pages/collection/collection",
-          "query": "",
           "scene": null,
-          "launchMode": "default",
           "partialCompile": {
             "enabled": true,
             "pages": []
           }
+        },
+        {
+          "name": "修改数据",
+          "pathName": "pages/tabs_home/home",
+          "query": "",
+          "scene": null,
+          "launchMode": "default"
         }
       ]
     }

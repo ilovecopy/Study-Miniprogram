@@ -1,6 +1,7 @@
 import * as echarts from '../../ec-canvas/echarts';
 
 const app = getApp();
+
 function initChart(canvas, width, height, dpr) {
   const chart = echarts.init(canvas, null, {
     width: width,
@@ -12,7 +13,7 @@ function initChart(canvas, width, height, dpr) {
     legend: {
       orient: 'vertical',
       x: 'left',
-      data: ['正确','错误','未答']
+      data: ['正确', '错误', '未答']
     },
     color: [
       '#60C5A0',
@@ -26,7 +27,7 @@ function initChart(canvas, width, height, dpr) {
           fontSize: 14,
           formatter: function (params) {
             return params.name + " " + +params.value + " 题"
-         }
+          }
         }
       },
       type: 'pie',
@@ -49,7 +50,7 @@ function initChart(canvas, width, height, dpr) {
 }
 Page({
   data: {
-    activeNames: ['0'],//评论面板默认关闭
+    activeNames: ['0'], //评论面板默认关闭
     ec: {
       onInit: initChart
     },
@@ -86,7 +87,9 @@ Page({
     });
   },
   onClose() {
-    this.setData({ show: false });
+    this.setData({
+      show: false
+    });
   },
 
   onSelect(event) {
@@ -96,9 +99,9 @@ Page({
     console.log(e)
     const that = this;
     const newIndex = e.detail.current
-    if(newIndex>this.data.currentIndex){
+    if (newIndex > this.data.currentIndex) {
       this.goNext()
-    }else{
+    } else {
       this.goPrev()
     }
     if (newIndex < 0) {
@@ -128,9 +131,9 @@ Page({
     //   delta: 1, //回到上一页
     // })
   },
-  getList(mode) {
+  getList() {
     const that = this;
-    console.log('getList', mode)
+    // console.log('getList', mode)
     wx.cloud
       .callFunction({
         name: "questionPool",
@@ -138,7 +141,8 @@ Page({
           type: "selectRecord",
           page: 1,
           size: 10,
-          mode: mode
+          mode: app.globalData.mode,
+          // index:index
         },
       })
       .then((res) => {
@@ -221,7 +225,7 @@ Page({
         this.setData({
           question: tempQuestion
         })
-        if (tempQuestion.userAnswer!=tempQuestion.answer) {//单选选错直接加错题本
+        if (tempQuestion.userAnswer != tempQuestion.answer) { //单选选错直接加错题本
           this.addCollection();
         }
       }
@@ -331,9 +335,9 @@ Page({
       score, //发送分数
       finish: true, //发送完成信号
     });
-    app.globalData.correctCount=correctCount;
-    app.globalData.wrongCount=wrongCount;
-    app.globalData.passCount=passCount;
+    app.globalData.correctCount = correctCount;
+    app.globalData.wrongCount = wrongCount;
+    app.globalData.passCount = passCount;
     wx.hideLoading();
   },
   _recordScore(score) {
@@ -355,7 +359,7 @@ Page({
         if (errCode == 0) {
           console.log(`已记录用户分数 ${score}`);
           // console.log('已记录用户分数 ',score);
-          console.log('已记录用户名字 ',this.data.nickName);
+          console.log('已记录用户名字 ', this.data.nickName);
           // console.log(`已记录用户名字 ${app.globalData.hasUserInfo}`);
         } else {
           console.error(errMsg);
@@ -365,9 +369,9 @@ Page({
   },
   _isCorrect(question) { //判断用户是否回答正确
     if (!question.userAnswer || question.userAnswer == "") {
-      return 0//未回答
+      return 0 //未回答
     } else if (question.answer.sort().join() === question.userAnswer.sort().join()) {
-      return 2//回答正确
+      return 2 //回答正确
     } else {
       return 1
     }
@@ -375,11 +379,11 @@ Page({
   addCollection() {
     const that = this;
     let tempQuestion = that.data.question; //获取当前题目
-    if (that._isCorrect(tempQuestion)==0) {
+    if (that._isCorrect(tempQuestion) == 0) {
       console.log(`用户还未回答，不加错题本逻辑 ${tempQuestion.title}`);
       return;
     }
-    if (that._isCorrect(tempQuestion)==2) {
+    if (that._isCorrect(tempQuestion) == 2) {
       console.log(`用户答对了，不加错题本逻辑 ${tempQuestion.title}`);
       return;
     }
@@ -408,12 +412,13 @@ Page({
   },
   addStar() {
     const that = this;
+    const {showAnswer,starred,userAnswer,...questionForStar} = that.data.question;
     wx.cloud
       .callFunction({
         name: "questionPool",
         data: {
           type: "addStar",
-          question: that.data.question,
+          question: questionForStar,
         }
       })
       .then(res => {
@@ -471,7 +476,7 @@ Page({
       })
       .catch(console.error);
   },
-  removeStar() {//移除收藏
+  removeStar() { //移除收藏
     const that = this;
     wx.cloud
       .callFunction({
@@ -555,12 +560,12 @@ Page({
       wx.hideLoading({})
     })
   },
-  gotoCollection(){
+  gotoCollection() {
     wx.reLaunch({
       url: '../collection/collection',
     })
   },
-  goHome(){
+  goHome() {
     wx.reLaunch({
       url: '../index/index',
     })

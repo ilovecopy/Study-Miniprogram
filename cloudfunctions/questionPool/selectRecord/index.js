@@ -9,6 +9,7 @@ const db = cloud.database();
  */
 async function getPageData(event) {
   const queryResult = await db.collection('question')
+    .where({index:'经济法'})
     .skip((event.page - 1) * event.size)
     .limit(event.size) //限制输出size个数据
     .get(); //默认且最多取 100 条记录。
@@ -62,9 +63,9 @@ async function getRandomList(event) {
 exports.main = async (event, context) => {
   console.log(event)
   // 返回数据库查询结果
-  if (event.mode == 1) {
+  if (event.mode==1) {
     return getPageData(event)
-  } else if (event.mode == 2) {
+  } else if (event.mode==2) {
     return getRandomList(event);
   }
 };

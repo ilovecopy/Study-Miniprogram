@@ -14,12 +14,16 @@ Page({
       },
     ],
     checked1:'',
-    checked2:''
+    checked2:'',
+    checked3:'',
+    checked4:'',
   },
   onLoad(){
     this.setData({
       checked1:app.globalData.beiti,
-      checked2:!app.globalData.beiti
+      checked2:!app.globalData.beiti,
+      checked3:app.globalData.mode,
+      checked4:!app.globalData.mode,
     })
   },
   onChange1({ detail }) {
@@ -38,21 +42,30 @@ Page({
     });
     app.globalData.beiti=this.data.checked1;
   },
-  onChooseAvatar(e) {
-    const { avatarUrl } = e.detail 
+  onChange3({ detail }) {
+    // 需要手动对 checked 状态进行更新
     this.setData({
-      avatarUrl,
-    }),
-    app.globalData.avatarUrl
+       checked3: detail ,
+       checked4:!detail
+    });
+    app.globalData.mode=this.data.checked3;
   },
-  beiti() {
-    app.globalData.beiti = 1;
-    console.log( app.globalData.beiti )
+  onChange4({ detail }) {
+    // 需要手动对 checked 状态进行更新
+    this.setData({ 
+      checked4: detail ,
+      checked3:!detail
+    });
+    app.globalData.mode=this.data.checked3;
   },
-  zuoti() {
-    app.globalData.beiti = 0;
-    console.log( app.globalData.beiti )
-  },
+  // beiti() {
+  //   app.globalData.beiti = 1;
+  //   console.log( app.globalData.beiti )
+  // },
+  // zuoti() {
+  //   app.globalData.beiti = 0;
+  //   console.log( app.globalData.beiti )
+  // },
   onClose() {
     this.setData({
       show: false

@@ -18,7 +18,7 @@
               <text class="text-grey">图片</text>
             </view>
             <view class="action">
-              <block wx:for="{{dataInfo.imgList}}">
+              <block wx:for="{{questionList}}">
                 <image src="{{item}}" mode="aspectFill" data-imglist="{{dataInfo.imgList}}" data-url="{{item}}" bindtap="ViewImage"></image>
               </block>
             </view>
@@ -28,7 +28,7 @@
               <text class="text-grey">内容</text>
             </view>
             <view class="action">
-              <text class="text-grey">{{dataInfo.content}}</text>
+              <text class="text-grey">{{question.title}}</text>
             </view>
           </view>
           <view class="cu-item">

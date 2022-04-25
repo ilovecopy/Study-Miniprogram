@@ -1,10 +1,14 @@
 const app = getApp();
 Page({
   data: {
+    total: 0,
+    question: null,
+    questionList: [],
+    current: 0, //swiper当前的index
     tableColumns: [{
         title: "标题",
         key: "title",
-        render: val => app.$util.LimitNumber(val, 6)
+        // render: val => app.$util.LimitNumber(val, 6)
       }, {
         title: "图片",
         key: "img",
@@ -16,7 +20,7 @@ Page({
         title: "内容",
         key: "content",
         width: "300rpx",
-        render: val => app.$util.LimitNumber(val, 10)
+        // render: val => app.$util.LimitNumber(val, 10)
       }, {
         title: "点赞数",
         key: "likeNum"
@@ -92,6 +96,43 @@ Page({
       fail(res) {}
     })
   },
+
+  // getList() {
+  //   const that = this;
+  //   wx.cloud
+  //     .callFunction({
+  //       name: "questionPool",
+  //       data: {
+  //         type: "selectRecord",
+  //         page: 1,
+  //         size: 330,
+  //         mode: 1
+  //       },
+  //     })
+  //     .then((res) => {
+  //       console.log(res.result)
+  //       const {
+  //         questionList,
+  //         errMsg,
+  //         errCode
+  //       } = res.result;
+  //       if (errCode == 0) {
+  //         const total = questionList.length;
+  //         const question = questionList[that.data.currentIndex];
+  //         console.log('题目=', question)
+  //         const comment = questionList[that.data.currentIndex].comment;
+  //         console.log('评论=', comment)
+  //         that.checkStar(question._id);
+  //         that.setData({
+  //           questionList,
+  //           total,
+  //           question,
+  //           comment,
+  //         });
+  //       }
+  //     })
+  //     .catch(console.error);
+  // },
   getList() {
     const {
       page,

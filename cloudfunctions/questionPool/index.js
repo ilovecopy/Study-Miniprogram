@@ -8,9 +8,13 @@ const recordScore = require('./recordScore/index');
 const addComment = require('./addComment/index');
 const getCollection = require('./getCollection/index');
 const removeCollection = require('./removeCollection/index');
+const getStar = require('./getStar/index');
+const gettest = require('./gettest/index');
 // 云函数入口函数
 exports.main = async (event, context) => {
   switch (event.type) {
+    case 'gettest':
+      return await gettest.main(event, context);
     case 'removeCollection':
       return await removeCollection.main(event, context);
     case 'getCollection':
@@ -23,6 +27,8 @@ exports.main = async (event, context) => {
       return await checkStar.main(event, context);
     case 'removeStar':
       return await removeStar.main(event, context);
+      case 'getStar':
+      return await getStar.main(event, context);
     case 'collect':
       return await collect.main(event, context);
     case 'recordScore':

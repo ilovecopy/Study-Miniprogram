@@ -1,0 +1,6 @@
+@import "/style/colorui.wxss";
+.fixed-bottom{
+    bottom: 0;
+    width: 100%;
+    position: fixed;
+}

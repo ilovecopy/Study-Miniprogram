@@ -1,0 +1,1 @@
+<table scrollViewHeight="calc(100vh - 114rpx)" bindscrolltolower="getList" class="basic-table" columns="{{tableColumns}}" dataList="{{dataList}}" getListLoading="{{isLoad}}" showTipImage="{{dataList.length===0&&!isLoad}}" bindclicklistitem="handleClickItem" rowKey="_id" />

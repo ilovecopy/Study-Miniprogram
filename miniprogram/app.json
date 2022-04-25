@@ -25,7 +25,17 @@
     "pages/adminGoods/goodsUpdata/goodsUpdata",
     "pages/adminGoods/goodsList/goodsList",
     "pages/adminFeedback/feedbackList/feedbackList",
-    "pages/collection/collection"
+    "pages/collection/collection",
+    "pages/star/star",
+    "pages/me/me",
+    "pages/tabs_home/home",
+    "pages/tabs_info/userInfo",
+    "pages/user/addForm",
+    "pages/template/template",
+    "pages/backdoor/backdoor",
+    "pages/backdoor-update/backdoor-update",
+    "pages/feedback/feedback",
+    "pages/comment/comment"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -36,6 +46,7 @@
   },
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
+    "van-search": "@vant/weapp/search/index",
     "van-button": "@vant/weapp/button/index",
     "van-grid": "@vant/weapp/grid/index",
     "van-grid-item": "@vant/weapp/grid-item/index",
@@ -55,6 +66,6 @@
     "van-empty": "@vant/weapp/empty/index",
     "van-loading": "@vant/weapp/loading/index",
     "van-collapse": "@vant/weapp/collapse/index",
-  "van-collapse-item": "@vant/weapp/collapse-item/index"
+    "van-collapse-item": "@vant/weapp/collapse-item/index"
   }
 }

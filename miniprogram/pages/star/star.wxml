@@ -1,0 +1,113 @@
+<!--错题本-->
+<wxs module="tool">
+  function getAnswerClass(question) {
+    var isCorrect = question.answer.sort().join() === question.userAnswer.sort().join();
+    return isCorrect ? "text-success" : "text-error";
+  }
+  function getItemClass(question, item) {
+    // 用户还未回答，不展示答案
+    if (!question.userAnswer) {
+      return "options-item";
+    }
+
+    var userChecked = question.userAnswer.indexOf(item.value) !== -1;
+    var isCorrect = question.answer.indexOf(item.value) !== -1;
+
+    if (!question.showAnswer) { // 不展示答案
+      if (userChecked) { // 选中当前选项
+        return "options-item_checked"
+      } else { // 用户未选中当前选项
+        return "options-item"
+      }
+    } else { // 需要展示答案
+      if (userChecked) { // 选中当前选项
+        if (isCorrect) { // 是正确答案
+          return "options-item_checked"
+        } else {// 是错误答案
+          return "options-item_error"
+        }
+      } else {
+        if (isCorrect) { // 是正确答案
+          if (question.type === 'checkbox') { // 多选题提示未选择
+            return "options-item_missing"
+          } else {
+            return "options-item_correct"
+          }
+        } else {// 是错误答案
+          return "options-item"
+        }
+      }
+
+    }
+  }
+  module.exports = {
+    getAnswerClass: getAnswerClass,
+    getItemClass: getItemClass,
+  }
+</wxs>
+
+<block wx:if="{{loadFinish}}">
+  <block wx:if="{{total > 0}}">
+    <view class="card">
+      <view class="info">
+        <text class="hilight-text">{{currentIndex + 1}}</text>
+        /{{total}}
+        <text class="hilight-text">【{{question.typeText}}】</text>
+      </view>
+      <view class="question-con">
+        <view class="question-title">{{question.title}}</view>
+        <view class="question-options">
+          <view wx:for="{{question.options}}" wx:key="value" bindtap="onItemClick" class="{{tool.getItemClass(question, item)}}" data-value="{{item.value}}">
+            {{item.value}}. {{item.text}}
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{ question.userAnswer && !question.showAnswer}}">
+        <van-button round block color="#4A7BEE" bindtap="onShowAnswer">确定</van-button>
+      </view>
+      <view wx:if="{{question.showAnswer && question.userAnswer}}" class="desc-block">
+        <view class="answer-row">
+          <view>
+            你的答案：
+            <text class="{{tool.getAnswerClass(question)}}">{{question.userAnswer}}</text>
+          </view>
+          <view>
+            正确答案：
+            <text class="text-success">{{question.answer}}</text>
+          </view>
+        </view>
+        <view class="desc-con">
+          <view>解析：</view>
+          {{question.desc}}
+        </view>
+      </view>
+    </view>
+    <view class="footer">
+      <view class="btn-row">
+        <van-button bindtap="goPrev" round type="primary" size="small" color="#4A7BEE">
+          <van-icon name="arrow-left" />
+          上一题
+        </van-button>
+        <van-button  bindtap="removeStar" round type="primary" size="small" color="#4A7BEE">
+          <van-icon name="delete-o" />
+          删除收藏
+        </van-button>
+        <van-button bindtap="goNext" round type="primary" size="small" color="#4A7BEE">
+          下一题
+          <van-icon name="arrow" />
+        </van-button>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <van-empty description="没有收藏题目">
+      <van-button round bindtap="goHome" custom-class="bottom-button" color="#4fc08d">返回</van-button>
+    </van-empty>
+  </block>
+</block>
+<block wx:else>
+  <view class="loading">
+    <van-loading type="spinner" size="64px" vertical>加载中...</van-loading>
+  </view>
+</block>
+<van-toast id="van-toast" />

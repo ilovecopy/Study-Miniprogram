@@ -1,4 +1,5 @@
 {
   "usingComponents": {
-  }
+  },
+  "navigationBarTitleText": "错题本"
 }
