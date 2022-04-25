@@ -9,7 +9,9 @@ const db = cloud.database();
  */
 async function getPageData(event) {
   const queryResult = await db.collection('question')
-    .where({index:event.index})
+    .where({
+      index: event.index
+    })
     .skip((event.page - 1) * event.size)
     .limit(event.size) //限制输出size个数据
     .get(); //默认且最多取 100 条记录。
@@ -37,6 +39,9 @@ async function getPageData(event) {
 async function getRandomList(event) {
   const queryResult = await db.collection('question')
     .aggregate()
+    .match({
+      index: event.index
+    })
     .sample({
       size: event.size //随机从文档中选取size个记录。
     })
@@ -63,9 +68,9 @@ async function getRandomList(event) {
 exports.main = async (event, context) => {
   console.log(event)
   // 返回数据库查询结果
-  if (event.mode==false) {
+  if (event.mode == false) {
     return getPageData(event)
-  } else if (event.mode==true) {
+  } else if (event.mode == true) {
     return getRandomList(event);
   }
 };

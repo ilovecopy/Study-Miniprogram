@@ -10,4 +10,5 @@
   <van-button bindtap="theory">理论法</van-button>
   <van-button bindtap="economy">经济法</van-button>
   <van-button bindtap="civil">民法</van-button>
+  <van-button bindtap="administrative">行政法</van-button>
 </view>

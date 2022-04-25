@@ -135,7 +135,7 @@
               </view>
             </view>
           </view>
-          <van-collapse value="{{ activeNames }}" bind:change="onChange">
+          <!-- <van-collapse value="{{ activeNames }}" bind:change="onChange">
             <van-collapse-item title="评论" name="1">
               <view wx:for="{{comment}}">{{item.name}}:{{item.content}}</view>
               <van-cell-group>
@@ -146,7 +146,7 @@
                 </van-field>
               </van-cell-group>
             </van-collapse-item>
-          </van-collapse>
+          </van-collapse> -->
           <!-- <view wx:if="{{beiti==0}}">
             <view wx:if="{{question.type=='checkbox'}}">
               <view wx:if="{{question.userAnswer}}">

@@ -13,25 +13,33 @@ Page({
     Toast(`当前值：${value}, 当前索引：${index}`);
   },
   theory() {
-    // console.log('》？？？',app.globalData.nickName)
+    app.globalData.subject='理论法'
+    console.log(app.globalData.subject)
     wx.navigateTo({
       url: '../exam/exam?subject=' + '理论法',
     })
-    app.globalData.subject='理论法'
+
   },
   civil() {
-    // console.log('》？？？',app.globalData.nickName)
+    app.globalData.subject='民法'
+    console.log(app.globalData.subject)
     wx.navigateTo({
       url: '../exam/exam?subject=' + '民法',
     })
-    app.globalData.subject='民法'
   },
   economy() {
-    // console.log(app.globalData.nickName)
+    app.globalData.subject='经济法'
+    console.log(app.globalData.subject)
     wx.navigateTo({
       url: '../exam/exam?subject=' + '经济法',
     })
-    app.globalData.subject='经济法'
+  },
+  administrative() {
+    app.globalData.subject='行政法'
+    console.log(app.globalData.subject)
+    wx.navigateTo({
+      url: '../exam/exam?subject=' + '行政法',
+    })
   },
   //微信授权登录
   login() {
