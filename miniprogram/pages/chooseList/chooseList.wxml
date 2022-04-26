@@ -11,4 +11,7 @@
   <van-button bindtap="economy">经济法</van-button>
   <van-button bindtap="civil">民法</van-button>
   <van-button bindtap="administrative">行政法</van-button>
+  <van-button bindtap="civil_proceeding">民诉法</van-button>
+  <van-button bindtap="commercial">商法</van-button>
+  <van-button bindtap="country">三国法</van-button>
 </view>

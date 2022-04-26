@@ -18,6 +18,28 @@ Page({
     wx.navigateTo({
       url: '../exam/exam?subject=' + '理论法',
     })
+  },
+  country() {
+    app.globalData.subject='三国法'
+    console.log(app.globalData.subject)
+    wx.navigateTo({
+      url: '../exam/exam?subject=' + '三国法',
+    })
+  },
+  civil_proceeding() {
+    app.globalData.subject='民诉法'
+    console.log(app.globalData.subject)
+    wx.navigateTo({
+      url: '../exam/exam?subject=' + '民诉法',
+    })
+
+  },
+  commercial() {
+    app.globalData.subject='商法'
+    console.log(app.globalData.subject)
+    wx.navigateTo({
+      url: '../exam/exam?subject=' + '商法',
+    })
 
   },
   civil() {

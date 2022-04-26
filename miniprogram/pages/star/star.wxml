@@ -53,6 +53,7 @@
         <text class="hilight-text">{{currentIndex + 1}}</text>
         /{{total}}
         <text class="hilight-text">【{{question.typeText}}】</text>
+        <text class="hilight-text">【{{question.index}}】</text>
       </view>
       <view class="question-con">
         <view class="question-title">{{question.title}}</view>
