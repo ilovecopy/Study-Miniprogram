@@ -19,11 +19,25 @@ Page({
       url: '../exam/exam?subject=' + '理论法',
     })
   },
+  criminal() {
+    app.globalData.subject='刑法'
+    console.log(app.globalData.subject)
+    wx.navigateTo({
+      url: '../exam/exam?subject=' + '刑法',
+    })
+  },
   country() {
     app.globalData.subject='三国法'
     console.log(app.globalData.subject)
     wx.navigateTo({
       url: '../exam/exam?subject=' + '三国法',
+    })
+  },
+  criminal_procedure() {
+    app.globalData.subject='刑诉法'
+    console.log(app.globalData.subject)
+    wx.navigateTo({
+      url: '../exam/exam?subject=' + '刑诉法',
     })
   },
   civil_proceeding() {

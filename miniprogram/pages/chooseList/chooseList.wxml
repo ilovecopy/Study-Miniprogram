@@ -14,4 +14,6 @@
   <van-button bindtap="civil_proceeding">民诉法</van-button>
   <van-button bindtap="commercial">商法</van-button>
   <van-button bindtap="country">三国法</van-button>
+  <van-button bindtap="criminal">刑法</van-button>
+  <van-button bindtap="criminal_procedure">刑诉法</van-button>
 </view>
