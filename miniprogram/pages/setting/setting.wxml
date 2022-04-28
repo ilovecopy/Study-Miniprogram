@@ -28,3 +28,4 @@
   <image class="avatar" src="{{avatarUrl}}"></image>
 </button> 
 <input type="nickname" class="weui-input" placeholder="请输入昵称"/> -->
+<van-button class="feedback" open-type="feedback">意见反馈</van-button>
