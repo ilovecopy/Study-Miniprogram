@@ -1,10 +1,6 @@
 import Toast from "../../miniprogram_npm/@vant/weapp/toast/toast";
 
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     loadFinish: false,
 
