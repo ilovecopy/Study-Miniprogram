@@ -1,0 +1,37 @@
+/* pages/index/index.wxss */
+
+.user-info{
+  margin-bottom: 10rpx;
+  padding: 10rpx;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+.avatar{
+  width:45px;
+  height:45px;
+  margin:20rpx;
+}
+
+.nick{
+  font-size: 32rpx;
+}
+.is-vip{
+  font-size: 24rpx;
+  color:orange;
+}
+.not-vip{
+  font-size: 24rpx;
+  color:#666;
+}
+
+.code-wrap{
+  margin:30rpx;
+}
+.code{
+  border:solid 1rpx orange;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  letter-spacing: 2px;
+}

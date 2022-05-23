@@ -19,10 +19,10 @@ App({
       beiti:true,
       mode:true,//随机答题
       subject:1,//科目
-      nickName:'未知用户',
-      avatarUrl:'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0',
-      userInfo: {},
-      hasUserInfo: false
+      // nickName:'未知用户',
+      // avatarUrl:'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0',
+      // userInfo: {},
+      // hasUserInfo: false
     };
   },
   $util: util

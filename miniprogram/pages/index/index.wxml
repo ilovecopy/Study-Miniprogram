@@ -1,3 +1,23 @@
+<view class="user-info">
+  <image 
+    bindtap="updateProfile"
+    class="avatar" 
+    src="{{avatarUrl || defalultAvatarUrl}}"
+  ></image>
+  <view>
+    <view class="nick">{{nickName}}</view>
+    <view wx:if="{{isVip}}" class="is-vip">Vip 用户</view>
+    <view wx:else class="not-vip">
+      您不是VIP
+      <van-button 
+        wx:if="{{avatarUrl}}" 
+        bindtap="openUpgrade" 
+        type="primary" 
+        size="mini"
+      >升级</van-button>
+    </view>
+  </view>
+</view>
 <van-grid column-num="3" border="{{ false }}">
   <van-grid-item icon="records" link-type="navigateTo" url="/pages/chooseList/chooseList" clickable="true" text="法考题" />
   <van-grid-item icon="todo-list-o" link-type="navigateTo" url="/pages/collection/collection" text="错题本" />
@@ -49,3 +69,18 @@
 </view>
 <view class="cu-avatar round lg" style="background-image:url({{avatarUrl}});"></view>
 <view class='text-grey text-sm'>{{nickName}}</view> -->
+<van-dialog
+  use-slot
+  title="请输入兑换码"
+  show="{{ isShowUpgradeLayer }}"
+  show-cancel-button
+  confirmButtonText="兑换"
+  bind:close="onClose"
+  bind:confirm="upgradeVip"
+>
+  <view class="code-wrap">
+    <input class="code" model:value="{{code}}" />
+  </view>
+</van-dialog>
+
+<van-toast id="van-toast" />

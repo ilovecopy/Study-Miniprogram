@@ -1,5 +1,5 @@
 {
-  "name": "db",
+  "name": "userInfo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,8 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-xlsx": "^0.16.1",
-    "tcb-router": "^1.1.2",
-    "wx-server-sdk": "~2.3.0"
+    "wx-server-sdk": "~2.6.1"
   }
 }
