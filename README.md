@@ -16,10 +16,10 @@
 - 多种法考题目
 - 意见反馈
 
-### Prerequisites
+### 安装要求
 
 微信开发者工具
 
-## Built With
+## 使用到的框架
 
 * [Vant-Weapp](https://vant-contrib.gitee.io/vant-weapp/) - The front-end framework used
