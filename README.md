@@ -1,4 +1,8 @@
+
+
 # 答题小程序
+
+用户手机刷题
 
 功能：
 
@@ -11,3 +15,11 @@
 - 顺序刷题
 - 多种法考题目
 - 意见反馈
+
+### Prerequisites
+
+微信开发者工具
+
+## Built With
+
+* [Vant-Weapp](https://vant-contrib.gitee.io/vant-weapp/) - The front-end framework used
