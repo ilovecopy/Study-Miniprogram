@@ -22,4 +22,4 @@
 
 ## 使用到的框架
 
-* [Vant-Weapp](https://vant-contrib.gitee.io/vant-weapp/) - The front-end framework used
+* [Vant-Weapp](https://vant-contrib.gitee.io/vant-weapp/) - 前端框架
