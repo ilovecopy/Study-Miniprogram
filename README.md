@@ -1,8 +1,11 @@
 
 
-# 答题小程序
+# 法考答题小程序
 
 用户手机刷题
+<img width="414" alt="image" src="https://user-images.githubusercontent.com/58297115/179141833-7aa4e368-00a3-4ffb-8b27-8154b2a1aae1.png">
+
+<img width="293" alt="image" src="https://user-images.githubusercontent.com/58297115/179142131-cd5f9e84-2f7a-4fd2-b429-9696c3c70e3a.png">
 
 功能：
 
